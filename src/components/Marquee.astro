@@ -1,0 +1,99 @@
+---
+interface Props {
+  variant?: 'first' | 'second';
+}
+
+const { variant = 'first' } = Astro.props;
+
+const firstPairs = [
+  { line1: 'Obraz wprowadza', line2: 'Dźwięk wciąga' },
+  { line1: 'W reklamie liczy się', line2: 'Dobry dźwięk wyróżnia' },
+];
+
+const secondPairs = [
+  { line1: 'To, czego nie widać w obrazie,', line2: 'często słychać w dźwięku' },
+];
+
+const selectedPairs = variant === 'first' ? firstPairs : secondPairs;
+const doubled = [...selectedPairs, ...selectedPairs, ...selectedPairs, ...selectedPairs, ...selectedPairs];
+---
+
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-inner">
+      {doubled.map((pair) => (
+        <div class="marquee-group">
+          <div class="marquee-line marquee-line--normal">{pair.line1}</div>
+          <div class="marquee-line marquee-line--accent">{pair.line2}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .marquee-section {
+    padding: var(--space-12) 0;
+    overflow: hidden;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    background: #000000;
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
+  .marquee-track {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .marquee-inner {
+    display: flex;
+    align-items: center;
+    gap: 120px;
+    white-space: nowrap;
+    animation: marquee 35s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-inner:hover {
+    animation-play-state: paused;
+  }
+
+  .marquee-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .marquee-line {
+    font-family: 'Neue Haas Grotesk Text Pro', 'Inter', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 48px);
+    line-height: 120%;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+    display: block;
+  }
+
+  .marquee-line--normal {
+    font-weight: 500;
+    color: #FDFDFD;
+  }
+
+  .marquee-line--accent {
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>

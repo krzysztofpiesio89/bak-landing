@@ -1,0 +1,397 @@
+---
+const clients = [
+  { name: 'TVP', abbr: 'TVP' },
+  { name: 'Polsat', abbr: 'POLSAT' },
+  { name: 'PSE', abbr: 'PSE' },
+  { name: 'TVN', abbr: 'TVN' },
+];
+---
+
+<section class="hero" id="hero" aria-label="Sekcja główna">
+  <div class="hero__bg" aria-hidden="true">
+    <canvas id="smoke-canvas" class="hero__canvas"></canvas>
+  </div>
+
+  <div class="container hero__content">
+    <div class="hero__text">
+      <h1 class="hero__title" data-animate data-animate-delay="100">
+        Obraz opowiada<br />
+        Dźwięk przekonuje
+      </h1>
+
+      <p class="hero__subtitle" data-animate data-animate-delay="200">
+        Profesjonalna postprodukcja dźwięku<br class="hidden-mobile" />
+        dla twórców filmowych i marek
+      </p>
+
+      <div class="hero__actions" data-animate data-animate-delay="300">
+        <a href="#kontakt" class="btn btn-primary hero__cta">
+          Porozmawiajmy o projekcie
+        </a>
+      </div>
+
+      <!-- Client logos -->
+      <div class="hero__clients" data-animate data-animate-delay="400">
+        <div class="hero__clients-list">
+          <span class="hero__client-logo-text">PSP audioware</span>
+          <span class="hero__client-logo-text">audio spot</span>
+          <span class="hero__client-logo-text">spl</span>
+          <span class="hero__client-logo-text">C4 audio boosters</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero__scroll" aria-hidden="true">
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 80px;
+    background: transparent;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background-color: #050505;
+    background-image: url('/hero_background%20(1).webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero__canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+  }
+
+  .hero__aurora-1 {
+    width: 60vw;
+    height: 60vh;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
+    top: -10%;
+    left: -10%;
+    animation-delay: 0s;
+  }
+
+  .hero__aurora-2 {
+    width: 50vw;
+    height: 70vh;
+    background: radial-gradient(circle, rgba(200, 200, 200, 0.25) 0%, rgba(200, 200, 200, 0) 70%);
+    bottom: -20%;
+    right: -10%;
+    animation-duration: 25s;
+    animation-delay: -5s;
+  }
+
+  .hero__aurora-3 {
+    width: 70vw;
+    height: 50vh;
+    background: radial-gradient(circle, rgba(220, 220, 220, 0.2) 0%, rgba(220, 220, 220, 0) 70%);
+    top: 30%;
+    left: 40%;
+    animation-duration: 30s;
+    animation-delay: -10s;
+  }
+
+  @keyframes aurora-float {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    33% { transform: translate(10vw, 5vh) scale(1.1) rotate(5deg); }
+    66% { transform: translate(-5vw, 15vh) scale(0.9) rotate(-5deg); }
+    100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  }
+
+  /* ── Content ────────────────────────── */
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero__text {
+    max-width: 720px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__eyebrow {
+    margin-bottom: var(--space-6);
+  }
+
+  .hero__title {
+    margin-bottom: var(--space-6);
+    font-family: 'Inter', var(--font-sans);
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--color-text);
+  }
+
+  .hero__subtitle {
+    font-family: 'Inter', var(--font-sans);
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    color: var(--color-text);
+    margin-bottom: var(--space-10);
+  }
+
+  .hero__actions {
+    margin-bottom: var(--space-16);
+  }
+
+  .hero__cta {
+    font-size: var(--text-base);
+    padding: var(--space-4) var(--space-8);
+  }
+
+  /* ── Clients ────────────────────────── */
+  .hero__clients {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: var(--space-8);
+  }
+
+  .hero__clients-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-10);
+    flex-wrap: wrap;
+    opacity: 0.5; /* dim the logos */
+    filter: grayscale(100%);
+  }
+
+  .hero__client-logo-text {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Scroll indicator ───────────────── */
+  .hero__scroll {
+    position: absolute;
+    bottom: var(--space-8);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--color-accent), transparent);
+    animation: progressBar 2s ease-in-out infinite alternate;
+    transform-origin: top;
+  }
+
+  /* ── Responsive ─────────────────────── */
+  .hidden-mobile {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hidden-mobile {
+      display: inline;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero__cta {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  function initSoundwaveCanvas() {
+    const canvas = document.getElementById('smoke-canvas') as HTMLCanvasElement;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = (canvas.width = canvas.offsetWidth);
+    let height = (canvas.height = canvas.offsetHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = canvas.offsetWidth;
+      height = canvas.height = canvas.offsetHeight;
+    });
+
+    let mouseX = width / 2;
+    let mouseY = height / 2;
+    let targetMouseY = height / 2;
+    let isHovered = false;
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      targetMouseY = e.clientY - rect.top;
+      isHovered = true;
+    });
+
+    window.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    interface SoundWave {
+      amplitude: number;
+      baseAmplitude: number;
+      frequency: number;
+      speed: number;
+      phase: number;
+      color: string;
+      lineWidth: number;
+      glow: boolean;
+      verticalOffset: number;
+    }
+
+    // Harmonic sound waves representing audio frequencies (bass, mid, treble, main melody)
+    const waves: SoundWave[] = [
+      {
+        amplitude: 55,
+        baseAmplitude: 55,
+        frequency: 0.006,
+        speed: 0.025,
+        phase: 0,
+        color: 'rgba(168, 255, 62, 0.85)', // Neon Accent Main Wave
+        lineWidth: 2.5,
+        glow: true,
+        verticalOffset: 0
+      },
+      {
+        amplitude: 40,
+        baseAmplitude: 40,
+        frequency: 0.009,
+        speed: -0.018,
+        phase: Math.PI / 3,
+        color: 'rgba(255, 255, 255, 0.45)', // Silver Harmony 1
+        lineWidth: 1.8,
+        glow: false,
+        verticalOffset: 15
+      },
+      {
+        amplitude: 65,
+        baseAmplitude: 65,
+        frequency: 0.004,
+        speed: 0.012,
+        phase: Math.PI / 1.5,
+        color: 'rgba(255, 255, 255, 0.25)', // Deep Bass Wave
+        lineWidth: 1.5,
+        glow: false,
+        verticalOffset: -20
+      },
+      {
+        amplitude: 30,
+        baseAmplitude: 30,
+        frequency: 0.014,
+        speed: 0.035,
+        phase: Math.PI / 4,
+        color: 'rgba(168, 255, 62, 0.4)', // Secondary Accent Harmonic
+        lineWidth: 1.2,
+        glow: true,
+        verticalOffset: 30
+      },
+      {
+        amplitude: 45,
+        baseAmplitude: 45,
+        frequency: 0.008,
+        speed: -0.022,
+        phase: Math.PI / 2,
+        color: 'rgba(200, 220, 255, 0.2)', // Sub-bass Ambient
+        lineWidth: 1.0,
+        glow: false,
+        verticalOffset: -10
+      }
+    ];
+
+    let step = 0;
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Smooth mouse Y interpolation
+      mouseY += (targetMouseY - mouseY) * 0.05;
+
+      const centerY = height * 0.55;
+
+      // Draw sound waves
+      waves.forEach((w) => {
+        w.phase += w.speed;
+
+        ctx.save();
+        ctx.beginPath();
+
+        if (w.glow) {
+          ctx.shadowColor = w.color;
+          ctx.shadowBlur = 12;
+        }
+
+        ctx.lineWidth = w.lineWidth;
+        ctx.strokeStyle = w.color;
+
+        const startY = centerY + w.verticalOffset;
+        ctx.moveTo(0, startY);
+
+        for (let x = 0; x <= width; x += 4) {
+          // Calculate distance from cursor X for dynamic interactive modulation
+          const distToMouse = Math.abs(x - mouseX);
+          const mouseEffectRadius = 250;
+          let mouseFactor = 1;
+
+          if (isHovered && distToMouse < mouseEffectRadius) {
+            const influence = (1 - distToMouse / mouseEffectRadius);
+            mouseFactor = 1 + influence * 0.8 * Math.sin(step * 0.1 + x * 0.05);
+          }
+
+          // Composite sine wave calculation (harmonic sound formula)
+          const currentAmp = w.baseAmplitude * mouseFactor;
+          const y1 = Math.sin(x * w.frequency + w.phase) * currentAmp;
+          const y2 = Math.cos(x * w.frequency * 0.5 + w.phase * 1.3) * (currentAmp * 0.3);
+          const y = startY + y1 + y2;
+
+          ctx.lineTo(x, y);
+        }
+
+        ctx.stroke();
+        ctx.restore();
+      });
+
+      step += 1;
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  }
+
+  // Initialize on DOM load and Astro page transitions
+  document.addEventListener('DOMContentLoaded', initSoundwaveCanvas);
+  initSoundwaveCanvas();
+</script>

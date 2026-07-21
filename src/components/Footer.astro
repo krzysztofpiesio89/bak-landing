@@ -1,0 +1,41 @@
+---
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer__container">
+    <p class="footer__copy">
+      © {new Date().getFullYear()} dzwiekwfilmie.pl | Wszystkie prawa zastrzeżone | <a href="/polityka-prywatnosci" class="footer__link">Polityka prywatności</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: var(--space-6) 0 var(--space-10);
+    text-align: center;
+    background: transparent;
+  }
+
+  .footer__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer__copy {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .footer__link {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .footer__link:hover {
+    color: var(--color-accent);
+  }
+</style>

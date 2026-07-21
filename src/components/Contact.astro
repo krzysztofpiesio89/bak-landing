@@ -1,0 +1,173 @@
+---
+---
+
+<section class="contact section" id="kontakt" aria-label="Kontakt — porozmawiajmy">
+  <div class="container contact__inner">
+    <h2 class="contact__main-title" data-animate>Porozmawiajmy</h2>
+
+    <!-- Green Bordered Text Box -->
+    <div class="contact__box" data-animate data-animate-delay="100">
+      <p class="contact__box-text">
+        Zachęcam do kontaktu. Porozmawiajmy o materiale, który już masz, o problemach z dźwiękiem albo o planach związanych z produkcją filmu. Nawet jeśli ostatecznie nie zdecydujesz się na współpracę, chętnie podzielę się doświadczeniem, doradzę i pomogę znaleźć dobre rozwiązanie.
+      </p>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="contact__action" data-animate data-animate-delay="200">
+      <a href="mailto:k.bak@dzwiekwfilmie.pl" class="btn btn-primary contact__cta">
+        Porozmawiajmy o projekcie
+      </a>
+    </div>
+
+    <!-- Direct Contact Info -->
+    <div class="contact__info" data-animate data-animate-delay="300">
+      <h3 class="contact__name">Krzysztof Bąk</h3>
+      <div class="contact__phones">
+        <img src="/Phone.svg" alt="Telefon" width="16" height="16" class="contact__icon" />
+        <a href="tel:+48601234927" class="contact__link">+48 601 234 927</a>
+        <span class="contact__sep">|</span>
+        <a href="tel:+48501555307" class="contact__link">+48 501 555 307</a>
+      </div>
+      <div class="contact__email-row">
+        <img src="/Envelope.svg" alt="Email" width="16" height="16" class="contact__icon" />
+        <a href="mailto:k.bak@dzwiekwfilmie.pl" class="contact__link">k.bak@dzwiekwfilmie.pl</a>
+      </div>
+    </div>
+
+    <!-- Social Media Links (Using Original Icon Files) -->
+    <div class="contact__socials" data-animate data-animate-delay="400">
+      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="Facebook">
+        <img src="/ic_baseline-facebook.svg" alt="Facebook" width="22" height="22" class="social-icon-img" />
+      </a>
+      <span class="social-sep">|</span>
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="Instagram">
+        <img src="/InstagramLogo.svg" alt="Instagram" width="22" height="22" class="social-icon-img" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: var(--space-20) 0 var(--space-12);
+    text-align: center;
+    position: relative;
+  }
+
+  .contact__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .contact__main-title {
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-8);
+    letter-spacing: -0.03em;
+  }
+
+  /* Green Bordered Text Box */
+  .contact__box {
+    border: 1px solid var(--color-accent);
+    padding: var(--space-6) var(--space-8);
+    background: rgba(0, 0, 0, 0.4);
+    margin-bottom: var(--space-8);
+    max-width: 680px;
+    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(168, 255, 62, 0.08);
+  }
+
+  .contact__box-text {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .contact__action {
+    margin-bottom: var(--space-12);
+  }
+
+  .contact__cta {
+    font-size: var(--text-sm);
+    padding: var(--space-3) var(--space-8);
+  }
+
+  /* Contact Info */
+  .contact__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .contact__name {
+    font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+    font-weight: 700;
+    color: var(--color-accent);
+    margin: 0 0 var(--space-1);
+    letter-spacing: -0.02em;
+  }
+
+  .contact__phones,
+  .contact__email-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+  }
+
+  .contact__icon {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+  }
+
+  .contact__link {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .contact__link:hover {
+    color: var(--color-accent);
+  }
+
+  .contact__sep {
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0 4px;
+  }
+
+  /* Socials */
+  .contact__socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .contact__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-fast), filter var(--transition-fast);
+  }
+
+  .contact__social-link:hover {
+    transform: scale(1.15);
+  }
+
+  .social-icon-img {
+    filter: brightness(0) saturate(100%) invert(88%) sepia(51%) saturate(1292%) hue-rotate(35px) brightness(105%) contrast(106%);
+  }
+
+  .social-sep {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: var(--text-sm);
+  }
+</style>

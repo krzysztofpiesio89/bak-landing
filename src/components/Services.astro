@@ -1,0 +1,198 @@
+---
+---
+
+<!-- Section 1: Co robię -->
+<section class="services section" id="co-robie" aria-label="Co robię">
+  <div class="container services__inner">
+    <!-- Left text block -->
+    <div class="services__text-col" data-animate>
+      <p class="section-label">Co robię</p>
+      
+      <div class="services__card">
+        <p class="services__card-text">
+          W filmie dokumentalnym autentyczność jest wszystkim, a dźwięk ma w niej ogromny udział. Pracuję przy filmach dokumentalnych, zajmuję się pełnym opracowaniem warstwy dźwiękowej filmu – od pracy z materiałem nagranym na planie po finalny miks. W dokumencie dźwięk ma szczególne zadanie: powinien być wiarygodny, naturalny i prowadzić widza przez historię, nie odciągając uwagi od bohaterów. Oczyszczone dialogi, spójna przestrzeń dźwiękowa i dobrze zbudowane tło sceny sprawiają, że widz łatwiej rozumie kontekst i emocje opowiadanej historii. Dzięki temu film staje się bardziej angażujący i profesjonalny w odbiorze. Dla Ciebie jako twórcy oznacza to materiał, który jest czytelny, spójny i gotowy do emisji na festiwalach, w telewizji czy na platformach streamingowych.
+        </p>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="services__slider-arrows">
+        <a href="#jak-pracuje" class="slider-arrow" aria-label="Poprzednia sekcja">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+        </a>
+        <a href="#mix-51" class="slider-arrow slider-arrow--active" aria-label="Przejdź do Mix 5.1">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Image -->
+    <div class="services__image-col" data-animate data-animate-delay="100">
+      <div class="services__image-frame">
+        <img
+          src="/15%20kolor.png"
+          alt="Profesjonalny sprzęt audio Krzysztofa Bąka"
+          class="services__image"
+          width="540"
+          height="640"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Mix 5.1 -->
+<section class="services section" id="mix-51" aria-label="Mix 5.1">
+  <div class="container services__inner services__inner--reverse">
+    <!-- Left Image -->
+    <div class="services__image-col" data-animate>
+      <div class="services__image-frame">
+        <img
+          src="/20%20kolor.png"
+          alt="Stanowisko pracy Mix 5.1"
+          class="services__image"
+          width="540"
+          height="640"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <!-- Right text block -->
+    <div class="services__text-col" data-animate data-animate-delay="100">
+      <p class="section-label">Mix 5.1</p>
+
+      <div class="services__card">
+        <p class="services__card-text">
+          W pracy nad filmem traktuję mix 5.1 jako punkt wyjścia do budowania konstrukcji dźwięku. System ten opiera się na sześciu kanałach – lewym, prawym, centralnym, dwóch kanałach tylnych oraz kanale niskich częstotliwości – co daje znacznie większą kontrolę nad rozmieszczeniem dialogów, muzyki i efektów niż w tradycyjnym stereo. Dzięki temu mogę precyzyjnie kształtować przestrzeń i relacje między poszczególnymi elementami dźwięku. Pracując w formacie 5.1 przygotowuję jednocześnie solidną podstawę do stworzenia innych wersji mixu, dostosowanych do różnych sposobów dystrybucji i odsłuchu.
+        </p>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="services__slider-arrows">
+        <a href="#co-robie" class="slider-arrow" aria-label="Poprzednia sekcja">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+        </a>
+        <a href="#przed-po" class="slider-arrow slider-arrow--active" aria-label="Przejdź do Przed i po">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    padding: var(--space-16) 0;
+  }
+
+  .services__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .services__inner--reverse {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Card */
+  .services__card {
+    background-color: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: var(--space-8);
+    border-radius: 2px;
+    margin-bottom: var(--space-6);
+  }
+
+  .services__card-text {
+    font-family: 'Inter', var(--font-sans);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 135%;
+    letter-spacing: -0.01em;
+    color: #FDFDFD;
+    margin: 0;
+  }
+
+  /* Image */
+  .services__image-frame {
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+  }
+
+  .services__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+    filter: grayscale(100%);
+    transition: filter var(--transition-slow);
+    display: block;
+  }
+
+  .services__image-frame:hover .services__image {
+    filter: grayscale(0%);
+  }
+
+  /* Slider arrows */
+  .services__slider-arrows {
+    display: flex;
+    gap: 12px;
+  }
+
+  .slider-arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 0;
+    border: 1px solid rgba(168, 255, 62, 0.3);
+    background: transparent;
+    color: rgba(168, 255, 62, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+  }
+
+  .slider-arrow--active,
+  .slider-arrow:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    box-shadow: 0 0 12px rgba(168, 255, 62, 0.2);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .services__inner,
+    .services__inner--reverse {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+    .services__inner--reverse .services__image-col {
+      order: -1;
+    }
+  }
+</style>

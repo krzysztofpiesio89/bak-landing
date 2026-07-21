@@ -1,0 +1,278 @@
+---
+const steps = [
+  {
+    number: 1,
+    title: 'Przyjęcie i analiza materiału',
+    body: 'Każdy projekt startuje z chwilą, gdy materiał trafia do mnie, zwykle w postaci surowych ścieżek dźwiękowych z planu filmowego lub z montażu obrazu. To moment, w którym zaczynam pracę nad tym, żeby dźwięk nabrał jakości, spójności i finalnie brzmiał profesjonalnie – tak, aby bez problemu mógł trafić do emisji w kinie, telewizji czy Internecie.',
+  },
+  {
+    number: 2,
+    title: 'Oczyszczanie i edycja',
+    body: 'Usuwam szumy, przydźwięki, echo i niepożądane dźwięki tła. Stosuję zaawansowane narzędzia do noise reduction i restauracji dźwięku, zachowując naturalność i pełnię brzmienia mowy oraz efektów.',
+  },
+  {
+    number: 3,
+    title: 'Mix i sound design',
+    body: 'Balansuję poziomy głosu, muzyki i efektów, projektuję głębię oraz atmosferę dźwiękową każdej sceny. Każdy element zostaje osadzony w przestrzeni, by budować emocje i dopełniać obraz.',
+  },
+  {
+    number: 4,
+    title: 'Mastering i odbiór',
+    body: 'Finalizuję projekt do rygorystycznych standardów broadcastowych (Loudness LUFS, True Peak). Dostarczam pliki w wymaganym formacie i przeprowadzam poprawki do pełnej satysfakcji twórców.',
+  },
+];
+---
+
+<section class="process section" id="jak-pracuje" aria-label="Jak pracuję — proces">
+  <div class="container process__inner">
+    <!-- Image -->
+    <div class="process__image-col" data-animate>
+      <div class="process__image-frame">
+        <img
+          src="/14%20kolor.png"
+          alt="Krzysztof Bąk z mikrofonem na planie"
+          class="process__image"
+          width="540"
+          height="640"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <!-- Process Content -->
+    <div class="process__text-col" data-animate>
+      <p class="section-label">Jak pracuję</p>
+
+      <!-- Step Card -->
+      <div class="process__card" id="process-card">
+        <div class="process__card-header">
+          <h3 class="process__card-title" id="process-title">{steps[0].title}</h3>
+          <span class="process__step-badge" id="process-badge">{steps[0].number}</span>
+        </div>
+        <p class="process__card-body" id="process-body">{steps[0].body}</p>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="process__slider-arrows">
+        <button class="slider-arrow" id="process-prev-btn" aria-label="Poprzedni etap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <button class="slider-arrow slider-arrow--active" id="process-next-btn" aria-label="Następny etap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .process {
+    padding: var(--space-20) 0;
+  }
+
+  .process__inner {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .section-badge {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-accent);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Image */
+  .process__image-frame {
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+  }
+
+  .process__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+    filter: grayscale(100%);
+    transition: filter var(--transition-slow);
+    display: block;
+  }
+
+  .process__image-frame:hover .process__image {
+    filter: grayscale(0%);
+  }
+
+  /* Card */
+  .process__card {
+    background-color: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: var(--space-8);
+    border-radius: 2px;
+    margin-bottom: var(--space-6);
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .process__card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .process__card-title {
+    font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .process__step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+  }
+
+  .process__card-body {
+    font-family: 'Inter', var(--font-sans);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 135%;
+    letter-spacing: -0.01em;
+    color: #FDFDFD;
+    margin: 0;
+  }
+
+  /* Slider arrows */
+  .process__slider-arrows {
+    display: flex;
+    gap: 12px;
+  }
+
+  .slider-arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 0;
+    border: 1px solid rgba(168, 255, 62, 0.3);
+    background: transparent;
+    color: rgba(168, 255, 62, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .slider-arrow--active,
+  .slider-arrow:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    box-shadow: 0 0 12px rgba(168, 255, 62, 0.2);
+  }
+
+  /* Bottom Quote Banner */
+  .process__quote-container {
+    margin-top: var(--space-20);
+    text-align: center;
+  }
+
+  .process__quote {
+    font-family: 'Neue Haas Grotesk Text Pro', 'Inter', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 48px);
+    font-weight: 500;
+    font-style: normal;
+    line-height: 120%;
+    letter-spacing: -0.03em;
+    color: #FDFDFD;
+  }
+
+  .process__quote .text-accent {
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .process__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+  }
+</style>
+
+<script define:vars={{ steps }}>
+  let currentIndex = 0;
+
+  const titleEl = document.getElementById('process-title');
+  const badgeEl = document.getElementById('process-badge');
+  const bodyEl = document.getElementById('process-body');
+  const prevBtn = document.getElementById('process-prev-btn');
+  const nextBtn = document.getElementById('process-next-btn');
+
+  function updateStep(index) {
+    currentIndex = index;
+    if (titleEl) titleEl.textContent = steps[currentIndex].title;
+    if (badgeEl) badgeEl.textContent = steps[currentIndex].number;
+    if (bodyEl) bodyEl.textContent = steps[currentIndex].body;
+
+    if (prevBtn) {
+      if (currentIndex === 0) {
+        prevBtn.classList.remove('slider-arrow--active');
+      } else {
+        prevBtn.classList.add('slider-arrow--active');
+      }
+    }
+
+    if (nextBtn) {
+      if (currentIndex === steps.length - 1) {
+        nextBtn.classList.remove('slider-arrow--active');
+      } else {
+        nextBtn.classList.add('slider-arrow--active');
+      }
+    }
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      updateStep(currentIndex - 1);
+    }
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    if (currentIndex < steps.length - 1) {
+      updateStep(currentIndex + 1);
+    } else {
+      updateStep(0); // loop back to start
+    }
+  });
+</script>
