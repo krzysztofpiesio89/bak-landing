@@ -7,39 +7,41 @@ export interface BrandLogo {
   width: string;
 }
 
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
 const brands: BrandLogo[] = [
   {
     id: 'psp',
     name: 'PSP audioware',
-    src: '/brands/psp-logo-light.svg',
+    src: `${base}brands/psp-logo-light.svg`,
     alt: 'PSP audioware logo',
     width: '115px',
   },
   {
     id: 'fabfilter',
     name: 'FabFilter',
-    src: '/brands/logo-fabfilter-2022.svg',
+    src: `${base}brands/logo-fabfilter-2022.svg`,
     alt: 'FabFilter logo',
     width: '36px',
   },
   {
     id: 'audiospot',
     name: 'Audio Spot',
-    src: '/brands/audiospotWhite_transs.webp',
+    src: `${base}brands/audiospotWhite_transs.webp`,
     alt: 'Audio Spot logo',
     width: '105px',
   },
   {
     id: 'spl',
     name: 'SPL',
-    src: '/brands/spl.png',
+    src: `${base}brands/spl.png`,
     alt: 'SPL logo',
     width: '54px',
   },
   {
     id: 'toneboosters',
     name: 'ToneBoosters',
-    src: '/brands/toneboosters.png',
+    src: `${base}brands/toneboosters.png`,
     alt: 'ToneBoosters logo',
     width: '120px',
   },

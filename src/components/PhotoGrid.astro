@@ -1,17 +1,19 @@
 ---
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
 const allPhotos = [
   // Col 1
-  { id: 0, src: '/12 kolor.png', alt: 'Realizacja dźwięku filmowego na planie' },
-  { id: 1, src: '/13 kolor.png', alt: 'Profesjonalny sprzęt nagraniowy Zaxcom' },
-  { id: 2, src: '/14 kolor.png', alt: 'Praca lektorska i realizacja mikrofonowa' },
+  { id: 0, src: `${base}12 kolor.png`, alt: 'Realizacja dźwięku filmowego na planie' },
+  { id: 1, src: `${base}13 kolor.png`, alt: 'Profesjonalny sprzęt nagraniowy Zaxcom' },
+  { id: 2, src: `${base}14 kolor.png`, alt: 'Praca lektorska i realizacja mikrofonowa' },
   // Col 2
-  { id: 3, src: '/15 kolor.png', alt: 'Sprzęt audio i torby realizatorskie Orca' },
-  { id: 4, src: '/16 kolor.png', alt: 'Rejestrator dźwięku Nagra i odsłuchy' },
-  { id: 5, src: '/17 kolor.png', alt: 'Praca na planie z ekipą filmową' },
+  { id: 3, src: `${base}15 kolor.png`, alt: 'Sprzęt audio i torby realizatorskie Orca' },
+  { id: 4, src: `${base}16 kolor.png`, alt: 'Rejestrator dźwięku Nagra i odsłuchy' },
+  { id: 5, src: `${base}17 kolor.png`, alt: 'Praca na planie z ekipą filmową' },
   // Col 3
-  { id: 6, src: '/18 kolor.png', alt: 'Mikrofony kierunkowe i osłony przeciwwiatrowe' },
-  { id: 7, src: '/19 kolor.png', alt: 'Portfolio nagrań plenerowych' },
-  { id: 8, src: '/20 kolor.png', alt: 'Zestaw odbiorników bezprzewodowych Wisycom' },
+  { id: 6, src: `${base}18 kolor.png`, alt: 'Mikrofony kierunkowe i osłony przeciwwiatrowe' },
+  { id: 7, src: `${base}19 kolor.png`, alt: 'Portfolio nagrań plenerowych' },
+  { id: 8, src: `${base}20 kolor.png`, alt: 'Zestaw odbiorników bezprzewodowych Wisycom' },
 ];
 
 const col1 = allPhotos.slice(0, 3);
@@ -488,16 +490,18 @@ const col3 = allPhotos.slice(6, 9);
 </style>
 
 <script>
+  const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
   const photos = [
-    { id: 0, src: '/12 kolor.png', alt: 'Realizacja dźwięku filmowego na planie' },
-    { id: 1, src: '/13 kolor.png', alt: 'Profesjonalny sprzęt nagraniowy Zaxcom' },
-    { id: 2, src: '/14 kolor.png', alt: 'Praca lektorska i realizacja mikrofonowa' },
-    { id: 3, src: '/15 kolor.png', alt: 'Sprzęt audio i torby realizatorskie Orca' },
-    { id: 4, src: '/16 kolor.png', alt: 'Rejestrator dźwięku Nagra i odsłuchy' },
-    { id: 5, src: '/17 kolor.png', alt: 'Praca na planie z ekipą filmową' },
-    { id: 6, src: '/18 kolor.png', alt: 'Mikrofony kierunkowe i osłony przeciwwiatrowe' },
-    { id: 7, src: '/19 kolor.png', alt: 'Portfolio nagrań plenerowych' },
-    { id: 8, src: '/20 kolor.png', alt: 'Zestaw odbiorników bezprzewodowych Wisycom' },
+    { id: 0, src: `${base}12 kolor.png`, alt: 'Realizacja dźwięku filmowego na planie' },
+    { id: 1, src: `${base}13 kolor.png`, alt: 'Profesjonalny sprzęt nagraniowy Zaxcom' },
+    { id: 2, src: `${base}14 kolor.png`, alt: 'Praca lektorska i realizacja mikrofonowa' },
+    { id: 3, src: `${base}15 kolor.png`, alt: 'Sprzęt audio i torby realizatorskie Orca' },
+    { id: 4, src: `${base}16 kolor.png`, alt: 'Rejestrator dźwięku Nagra i odsłuchy' },
+    { id: 5, src: `${base}17 kolor.png`, alt: 'Praca na planie z ekipą filmową' },
+    { id: 6, src: `${base}18 kolor.png`, alt: 'Mikrofony kierunkowe i osłony przeciwwiatrowe' },
+    { id: 7, src: `${base}19 kolor.png`, alt: 'Portfolio nagrań plenerowych' },
+    { id: 8, src: `${base}20 kolor.png`, alt: 'Zestaw odbiorników bezprzewodowych Wisycom' },
   ];
 
   let currentIndex = 0;

@@ -114,6 +114,15 @@ const doubled = [...selectedPairs, ...selectedPairs, ...selectedPairs, ...select
     color: var(--color-accent);
   }
 
+  @media (max-width: 768px) {
+    .marquee-section::before,
+    .marquee-section::after {
+      width: 2vw;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+    }
+  }
+
   @keyframes marquee {
     0% {
       transform: translateX(0);

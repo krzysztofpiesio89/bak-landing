@@ -1,35 +1,36 @@
 ---
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
-<section class="contact section" id="kontakt" aria-label="Kontakt — porozmawiajmy">
-  <div class="container contact__inner">
-    <h2 class="contact__main-title" data-animate>Porozmawiajmy</h2>
-
-    <!-- Green Bordered Text Box -->
-    <div class="contact__box" data-animate data-animate-delay="100">
-      <p class="contact__box-text">
-        Zachęcam do kontaktu. Porozmawiajmy o materiale, który już masz, o problemach z dźwiękiem albo o planach związanych z produkcją filmu. Nawet jeśli ostatecznie nie zdecydujesz się na współpracę, chętnie podzielę się doświadczeniem, doradzę i pomogę znaleźć dobre rozwiązanie.
+<section class="contact-section" id="kontakt" aria-label="Sekcja kontaktowa">
+  <div class="container contact-container">
+    <div class="contact__header" data-animate>
+      <div class="section-tag">
+        <span class="square-accent"></span>
+        <span>Kontakt</span>
+      </div>
+      
+      <h2 class="contact__title" data-animate data-animate-delay="100">
+        Porozmawiajmy<br />o Twoim projekcie
+      </h2>
+      
+      <p class="contact__description" data-animate data-animate-delay="200">
+        Szukasz doświadczonego realizatora dźwięku na plan lub do postprodukcji?<br class="hidden-mobile" />
+        Napisz lub zadzwoń — chętnie omówię szczegóły współpracy.
       </p>
-    </div>
-
-    <!-- CTA Button -->
-    <div class="contact__action" data-animate data-animate-delay="200">
-      <a href="mailto:k.bak@dzwiekwfilmie.pl" class="btn btn-primary contact__cta">
-        Porozmawiajmy o projekcie
-      </a>
     </div>
 
     <!-- Direct Contact Info -->
     <div class="contact__info" data-animate data-animate-delay="300">
       <h3 class="contact__name">Krzysztof Bąk</h3>
       <div class="contact__phones">
-        <img src="/Phone.svg" alt="Telefon" width="16" height="16" class="contact__icon" />
+        <img src={`${base}Phone.svg`} alt="Telefon" width="16" height="16" class="contact__icon" />
         <a href="tel:+48601234927" class="contact__link">+48 601 234 927</a>
         <span class="contact__sep">|</span>
         <a href="tel:+48501555307" class="contact__link">+48 501 555 307</a>
       </div>
       <div class="contact__email-row">
-        <img src="/Envelope.svg" alt="Email" width="16" height="16" class="contact__icon" />
+        <img src={`${base}Envelope.svg`} alt="Email" width="16" height="16" class="contact__icon" />
         <a href="mailto:k.bak@dzwiekwfilmie.pl" class="contact__link">k.bak@dzwiekwfilmie.pl</a>
       </div>
     </div>
@@ -37,11 +38,11 @@
     <!-- Social Media Links (Using Original Icon Files) -->
     <div class="contact__socials" data-animate data-animate-delay="400">
       <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="Facebook">
-        <img src="/ic_baseline-facebook.svg" alt="Facebook" width="22" height="22" class="social-icon-img" />
+        <img src={`${base}ic_baseline-facebook.svg`} alt="Facebook" width="22" height="22" class="social-icon-img" />
       </a>
       <span class="social-sep">|</span>
       <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="Instagram">
-        <img src="/InstagramLogo.svg" alt="Instagram" width="22" height="22" class="social-icon-img" />
+        <img src={`${base}InstagramLogo.svg`} alt="Instagram" width="22" height="22" class="social-icon-img" />
       </a>
     </div>
   </div>

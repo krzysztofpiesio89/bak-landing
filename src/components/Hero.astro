@@ -1,5 +1,6 @@
 ---
 import ClientLogos from './ClientLogos.astro';
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <section class="hero" id="hero" aria-label="Sekcja główna">
@@ -7,13 +8,13 @@ import ClientLogos from './ClientLogos.astro';
     <video
       id="hero-video"
       class="hero__video"
-      poster="/hero_background%20(1).webp"
+      poster={`${base}hero_background%20(1).webp`}
       autoplay
       loop
       muted
       playsinline
       preload="none"
-      data-src="/background%20hero.mp4"
+      data-src={`${base}background%20hero.mp4`}
     ></video>
     <div class="hero__video-overlay"></div>
     <canvas id="smoke-canvas" class="hero__canvas"></canvas>

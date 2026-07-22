@@ -1,4 +1,6 @@
 ---
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
 const steps = [
   {
     number: 1,
@@ -29,7 +31,7 @@ const steps = [
     <div class="process__image-col" data-animate>
       <div class="process__image-frame">
         <img
-          src="/14%20kolor.png"
+          src={`${base}14%20kolor.png`}
           alt="Krzysztof Bąk z mikrofonem na planie"
           class="process__image"
           width="540"
