@@ -1,10 +1,5 @@
 ---
-const clients = [
-  { name: 'TVP', abbr: 'TVP' },
-  { name: 'Polsat', abbr: 'POLSAT' },
-  { name: 'PSE', abbr: 'PSE' },
-  { name: 'TVN', abbr: 'TVN' },
-];
+import ClientLogos from './ClientLogos.astro';
 ---
 
 <section class="hero" id="hero" aria-label="Sekcja główna">
@@ -30,14 +25,9 @@ const clients = [
         </a>
       </div>
 
-      <!-- Client logos -->
+      <!-- Client logos component -->
       <div class="hero__clients" data-animate data-animate-delay="400">
-        <div class="hero__clients-list">
-          <span class="hero__client-logo-text">PSP audioware</span>
-          <span class="hero__client-logo-text">audio spot</span>
-          <span class="hero__client-logo-text">spl</span>
-          <span class="hero__client-logo-text">C4 audio boosters</span>
-        </div>
+        <ClientLogos />
       </div>
     </div>
   </div>

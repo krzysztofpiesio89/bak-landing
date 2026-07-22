@@ -1,0 +1,134 @@
+---
+export interface BrandLogo {
+  id: string;
+  name: string;
+  src: string;
+  alt: string;
+  maxHeight: string;
+}
+
+const brands: BrandLogo[] = [
+  {
+    id: 'psp',
+    name: 'PSP audioware',
+    src: '/brands/psp-logo-light.svg',
+    alt: 'PSP audioware logo',
+    maxHeight: '42px',
+  },
+  {
+    id: 'fabfilter',
+    name: 'FabFilter',
+    src: '/brands/logo-fabfilter-2022.svg',
+    alt: 'FabFilter logo',
+    maxHeight: '44px',
+  },
+  {
+    id: 'audiospot',
+    name: 'Audio Spot',
+    src: '/brands/audiospotWhite_transs.webp',
+    alt: 'Audio Spot logo',
+    maxHeight: '34px',
+  },
+  {
+    id: 'spl',
+    name: 'SPL',
+    src: '/brands/spl.png',
+    alt: 'SPL logo',
+    maxHeight: '38px',
+  },
+  {
+    id: 'toneboosters',
+    name: 'ToneBoosters',
+    src: '/brands/toneboosters.png',
+    alt: 'ToneBoosters logo',
+    maxHeight: '28px',
+  },
+];
+---
+
+<div class="client-logos" aria-label="Logotypy partnerów i oprogramowania">
+  <div class="client-logos__track">
+    {brands.map((brand) => (
+      <div class="client-logos__item" data-brand={brand.id}>
+        <img
+          src={brand.src}
+          alt={brand.alt}
+          class={`client-logos__img client-logos__img--${brand.id}`}
+          style={`max-height: ${brand.maxHeight};`}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .client-logos {
+    margin-top: var(--space-12);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .client-logos__track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(24px, 4.5vw, 56px);
+    flex-wrap: wrap;
+  }
+
+  .client-logos__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    padding: 4px 8px;
+    transition: transform 300ms ease;
+  }
+
+  .client-logos__item:hover {
+    transform: translateY(-2px);
+  }
+
+  .client-logos__img {
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: filter 300ms ease, opacity 300ms ease;
+  }
+
+  /* SVG / White Logo Filters */
+  .client-logos__img--psp,
+  .client-logos__img--fabfilter,
+  .client-logos__img--audiospot {
+    filter: opacity(0.7);
+  }
+
+  .client-logos__item:hover .client-logos__img--psp,
+  .client-logos__item:hover .client-logos__img--fabfilter,
+  .client-logos__item:hover .client-logos__img--audiospot {
+    filter: opacity(1);
+  }
+
+  /* PNG Dark Logos Inversion to Crisp White */
+  .client-logos__img--spl,
+  .client-logos__img--toneboosters {
+    filter: brightness(0) invert(1) opacity(0.7);
+  }
+
+  .client-logos__item:hover .client-logos__img--spl,
+  .client-logos__item:hover .client-logos__img--toneboosters {
+    filter: brightness(0) invert(1) opacity(1);
+  }
+
+  @media (max-width: 768px) {
+    .client-logos__track {
+      gap: 20px;
+    }
+    .client-logos__item {
+      height: 40px;
+    }
+  }
+</style>
