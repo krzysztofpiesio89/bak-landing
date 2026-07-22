@@ -62,7 +62,20 @@ const navLinks = [
     right: 0;
     z-index: 100;
     padding: var(--space-4) 0;
-    transition: background var(--transition-base), box-shadow var(--transition-base);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%);
+    transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+                background var(--transition-base),
+                box-shadow var(--transition-base);
+  }
+
+  .navbar.visible,
+  .navbar.menu-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .navbar.scrolled {
@@ -239,10 +252,17 @@ const navLinks = [
 </style>
 
 <script>
-  // Scroll effect
+  // Scroll effect (invisible in top 10px, smoothly reveals on > 10px scroll)
   const navbar = document.getElementById('navbar');
   const onScroll = () => {
-    if (window.scrollY > 60) {
+    const scrollY = window.scrollY || window.pageYOffset;
+    if (scrollY > 10) {
+      navbar?.classList.add('visible');
+    } else {
+      navbar?.classList.remove('visible');
+    }
+
+    if (scrollY > 60) {
       navbar?.classList.add('scrolled');
     } else {
       navbar?.classList.remove('scrolled');
@@ -258,6 +278,7 @@ const navLinks = [
   hamburger?.addEventListener('click', () => {
     const isOpen = hamburger.classList.toggle('open');
     mobileMenu?.classList.toggle('open');
+    navbar?.classList.toggle('menu-open', isOpen);
     hamburger.setAttribute('aria-expanded', String(isOpen));
     mobileMenu?.setAttribute('aria-hidden', String(!isOpen));
   });
@@ -267,6 +288,7 @@ const navLinks = [
     link.addEventListener('click', () => {
       hamburger?.classList.remove('open');
       mobileMenu.classList.remove('open');
+      navbar?.classList.remove('menu-open');
       hamburger?.setAttribute('aria-expanded', 'false');
       mobileMenu.setAttribute('aria-hidden', 'true');
     });
