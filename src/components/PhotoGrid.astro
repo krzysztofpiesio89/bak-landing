@@ -69,27 +69,26 @@ const col3 = allPhotos.slice(6, 9);
     </svg>
   </button>
 
+  <!-- Audio Wave Line Beam & Equalizer Bars (Connecting Left Arrow to Right Arrow) -->
+  <div id="lightbox-soundwave" class="lightbox__soundwave" aria-hidden="true">
+    <svg class="lightbox__soundwave-svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path class="wave-line wave-line-1" d="M0,60 Q300,-10 600,60 T1200,60"></path>
+      <path class="wave-line wave-line-2" d="M0,60 Q300,130 600,60 T1200,60"></path>
+      <path class="wave-line wave-line-3" d="M0,60 Q200,20 400,60 T800,60 T1200,60"></path>
+    </svg>
+    <div class="lightbox__equalizer">
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+    </div>
+  </div>
+
   <div class="lightbox__content">
     <img id="lightbox-img" src="" alt="" class="lightbox__img" />
-    
-    <!-- Animated Soundwave Waveform & Equalizer Overlay -->
-    <div id="lightbox-soundwave" class="lightbox__soundwave" aria-hidden="true">
-      <svg class="lightbox__soundwave-svg" viewBox="0 0 800 120" preserveAspectRatio="none">
-        <path class="wave-line wave-line-1" d="M0,60 Q200,10 400,60 T800,60"></path>
-        <path class="wave-line wave-line-2" d="M0,60 Q200,110 400,60 T800,60"></path>
-        <path class="wave-line wave-line-3" d="M0,60 Q150,30 300,60 T600,60 T800,60"></path>
-      </svg>
-      <div class="lightbox__equalizer">
-        <span class="eq-bar"></span>
-        <span class="eq-bar"></span>
-        <span class="eq-bar"></span>
-        <span class="eq-bar"></span>
-        <span class="eq-bar"></span>
-        <span class="eq-bar"></span>
-        <span class="eq-bar"></span>
-      </div>
-    </div>
-
     <div class="lightbox__caption-bar">
       <span id="lightbox-caption" class="lightbox__caption"></span>
       <span id="lightbox-counter" class="lightbox__counter"></span>
@@ -280,18 +279,22 @@ const col3 = allPhotos.slice(6, 9);
     transform: scale(1);
   }
 
-  /* Soundwave Waveform & Equalizer Animation Container */
+  /* Pure Audio Wave Line Beam (High z-index 50 connecting Left and Right arrows) */
   .lightbox__soundwave {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 100vw;
+    height: 180px;
+    transform: translateY(-50%);
+    z-index: 50; /* Higher than image and caption overlay */
     pointer-events: none;
+    background: transparent; /* Absolutely no background shading */
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 200ms ease;
+    transition: opacity 120ms ease;
   }
 
   .lightbox__soundwave.active {
@@ -300,65 +303,89 @@ const col3 = allPhotos.slice(6, 9);
 
   .lightbox__soundwave-svg {
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 0;
-    width: 100%;
-    height: 140px;
-    transform: translateY(-50%);
+    width: 100vw;
+    height: 100%;
+    background: transparent;
   }
 
   .wave-line {
     fill: none;
     stroke: #39FF14;
-    stroke-width: 2.5;
+    stroke-width: 0.6px;
     stroke-linecap: round;
-    filter: drop-shadow(0 0 10px #39FF14);
-    stroke-dasharray: 800;
-    stroke-dashoffset: 800;
-    transition: stroke-dashoffset 400ms ease;
+    filter: drop-shadow(0 0 2px rgba(57, 255, 20, 0.6));
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
   }
 
+  /* Ethereal whisper-light acoustic wave lines */
   .lightbox__soundwave.active .wave-line-1 {
-    animation: wave-draw 400ms ease forwards, wave-pulse 300ms ease-in-out infinite alternate;
+    animation: impulse-sweep 340ms cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    stroke-width: 0.6px;
+    opacity: 0.75;
   }
   .lightbox__soundwave.active .wave-line-2 {
-    animation: wave-draw 400ms ease 50ms forwards, wave-pulse 300ms ease-in-out 100ms infinite alternate;
-    stroke-width: 1.5;
-    opacity: 0.7;
+    animation: impulse-sweep 340ms cubic-bezier(0.1, 0.9, 0.2, 1) 30ms forwards;
+    stroke-width: 0.4px;
+    opacity: 0.45;
   }
   .lightbox__soundwave.active .wave-line-3 {
-    animation: wave-draw 400ms ease 100ms forwards, wave-pulse 300ms ease-in-out 150ms infinite alternate;
-    stroke-width: 1;
-    opacity: 0.5;
+    animation: impulse-sweep 340ms cubic-bezier(0.1, 0.9, 0.2, 1) 60ms forwards;
+    stroke-width: 0.25px;
+    opacity: 0.25;
   }
 
-  /* Equalizer Bars */
+  /* Ultra-sleek 1.5px Equalizer Audio Level Bars */
   .lightbox__equalizer {
     position: absolute;
-    bottom: 80px;
+    bottom: 24px;
     display: flex;
     align-items: flex-end;
-    gap: 6px;
-    height: 36px;
+    gap: 4px;
+    height: 24px;
+    background: transparent;
+    pointer-events: none;
   }
 
   .eq-bar {
-    width: 4px;
+    width: 1.5px;
     height: 100%;
     background: #39FF14;
-    border-radius: 2px;
-    box-shadow: 0 0 10px #39FF14;
+    border-radius: 1px;
+    box-shadow: 0 0 4px rgba(57, 255, 20, 0.7);
+    opacity: 0.75;
     transform: scaleY(0.2);
     transform-origin: bottom;
   }
 
-  .lightbox__soundwave.active .eq-bar:nth-child(1) { animation: eq-anim 350ms ease-in-out infinite alternate; }
-  .lightbox__soundwave.active .eq-bar:nth-child(2) { animation: eq-anim 350ms ease-in-out 60ms infinite alternate; }
-  .lightbox__soundwave.active .eq-bar:nth-child(3) { animation: eq-anim 350ms ease-in-out 120ms infinite alternate; }
-  .lightbox__soundwave.active .eq-bar:nth-child(4) { animation: eq-anim 350ms ease-in-out 40ms infinite alternate; }
-  .lightbox__soundwave.active .eq-bar:nth-child(5) { animation: eq-anim 350ms ease-in-out 180ms infinite alternate; }
-  .lightbox__soundwave.active .eq-bar:nth-child(6) { animation: eq-anim 350ms ease-in-out 90ms infinite alternate; }
-  .lightbox__soundwave.active .eq-bar:nth-child(7) { animation: eq-anim 350ms ease-in-out 150ms infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(1) { animation: eq-anim 280ms ease-in-out infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(2) { animation: eq-anim 280ms ease-in-out 40ms infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(3) { animation: eq-anim 280ms ease-in-out 80ms infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(4) { animation: eq-anim 280ms ease-in-out 30ms infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(5) { animation: eq-anim 280ms ease-in-out 120ms infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(6) { animation: eq-anim 280ms ease-in-out 60ms infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(7) { animation: eq-anim 280ms ease-in-out 100ms infinite alternate; }
+
+  @keyframes eq-anim {
+    0% { transform: scaleY(0.2); }
+    100% { transform: scaleY(1); }
+  }
+
+  @keyframes impulse-sweep {
+    0% {
+      stroke-dashoffset: 1200;
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
 
   @keyframes wave-draw {
     to { stroke-dashoffset: 0; }
