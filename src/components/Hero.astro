@@ -4,6 +4,18 @@ import ClientLogos from './ClientLogos.astro';
 
 <section class="hero" id="hero" aria-label="Sekcja główna">
   <div class="hero__bg" aria-hidden="true">
+    <video
+      id="hero-video"
+      class="hero__video"
+      poster="/hero_background%20(1).webp"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="none"
+      data-src="/background%20hero.mp4"
+    ></video>
+    <div class="hero__video-overlay"></div>
     <canvas id="smoke-canvas" class="hero__canvas"></canvas>
   </div>
 
@@ -31,11 +43,6 @@ import ClientLogos from './ClientLogos.astro';
       </div>
     </div>
   </div>
-
-  <!-- Scroll indicator -->
-  <div class="hero__scroll" aria-hidden="true">
-    <div class="hero__scroll-line"></div>
-  </div>
 </section>
 
 <style>
@@ -53,19 +60,37 @@ import ClientLogos from './ClientLogos.astro';
     position: absolute;
     inset: 0;
     background-color: #050505;
-    background-image: url('/hero_background%20(1).webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     z-index: 0;
     overflow: hidden;
   }
 
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    filter: grayscale(100%) contrast(1.1) brightness(0.95);
+    z-index: 0;
+  }
+
+  .hero__video-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(5, 5, 5, 0.2) 0%, rgba(5, 5, 5, 0.65) 100%),
+                linear-gradient(180deg, rgba(5, 5, 5, 0.45) 0%, rgba(5, 5, 5, 0.15) 50%, rgba(5, 5, 5, 0.8) 100%);
+    z-index: 1;
+  }
+
   .hero__canvas {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     display: block;
     pointer-events: none;
+    z-index: 2;
   }
 
   .hero__aurora-1 {
@@ -180,25 +205,6 @@ import ClientLogos from './ClientLogos.astro';
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--color-text-muted);
-  }
-
-  /* ── Scroll indicator ───────────────── */
-  .hero__scroll {
-    position: absolute;
-    bottom: var(--space-8);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero__scroll-line {
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, var(--color-accent), transparent);
-    animation: progressBar 2s ease-in-out infinite alternate;
-    transform-origin: top;
   }
 
   /* ── Responsive ─────────────────────── */
@@ -381,7 +387,39 @@ import ClientLogos from './ClientLogos.astro';
     animate();
   }
 
+  // Lazy Loading Video Observer
+  function initLazyHeroVideo() {
+    const video = document.getElementById('hero-video') as HTMLVideoElement;
+    if (!video) return;
+
+    const dataSrc = video.getAttribute('data-src');
+    if (!dataSrc) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!video.src) {
+              video.src = dataSrc;
+              video.load();
+              video.play().catch(() => {});
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(video);
+  }
+
   // Initialize on DOM load and Astro page transitions
-  document.addEventListener('DOMContentLoaded', initSoundwaveCanvas);
-  initSoundwaveCanvas();
+  function initHero() {
+    initSoundwaveCanvas();
+    initLazyHeroVideo();
+  }
+
+  document.addEventListener('DOMContentLoaded', initHero);
+  initHero();
 </script>

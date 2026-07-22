@@ -69,6 +69,25 @@ const col3 = allPhotos.slice(6, 9);
 
   <div class="lightbox__content">
     <img id="lightbox-img" src="" alt="" class="lightbox__img" />
+    
+    <!-- Animated Soundwave Waveform & Equalizer Overlay -->
+    <div id="lightbox-soundwave" class="lightbox__soundwave" aria-hidden="true">
+      <svg class="lightbox__soundwave-svg" viewBox="0 0 800 120" preserveAspectRatio="none">
+        <path class="wave-line wave-line-1" d="M0,60 Q200,10 400,60 T800,60"></path>
+        <path class="wave-line wave-line-2" d="M0,60 Q200,110 400,60 T800,60"></path>
+        <path class="wave-line wave-line-3" d="M0,60 Q150,30 300,60 T600,60 T800,60"></path>
+      </svg>
+      <div class="lightbox__equalizer">
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+      </div>
+    </div>
+
     <div class="lightbox__caption-bar">
       <span id="lightbox-caption" class="lightbox__caption"></span>
       <span id="lightbox-counter" class="lightbox__counter"></span>
@@ -229,17 +248,128 @@ const col3 = allPhotos.slice(6, 9);
 
   .lightbox__img {
     max-width: 90vw;
-    max-height: 75vh;
+    max-height: 80vh;
     object-fit: contain;
     border-radius: var(--radius-sm);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
-    transform: scale(0.95);
-    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(57, 255, 20, 0.15);
+    transition: filter 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 350ms ease;
+    will-change: filter, transform, opacity;
+  }
+
+  /* Smoke & Soundwave Dissolve Out State */
+  .lightbox__img--smoke-out {
+    opacity: 0.1;
+    filter: blur(24px) grayscale(100%) contrast(1.4);
+    transform: scale(0.93);
+    box-shadow: 0 0 60px rgba(57, 255, 20, 0.6);
+  }
+
+  /* Smoke & Soundwave Dissolve In State */
+  .lightbox__img--smoke-in {
+    opacity: 0;
+    filter: blur(20px) grayscale(70%) scale(1.06);
+    box-shadow: 0 0 45px rgba(57, 255, 20, 0.45);
   }
 
   .lightbox.lightbox--active .lightbox__img {
     transform: scale(1);
+  }
+
+  /* Soundwave Waveform & Equalizer Animation Container */
+  .lightbox__soundwave {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  .lightbox__soundwave.active {
+    opacity: 1;
+  }
+
+  .lightbox__soundwave-svg {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    transform: translateY(-50%);
+  }
+
+  .wave-line {
+    fill: none;
+    stroke: #39FF14;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 10px #39FF14);
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    transition: stroke-dashoffset 400ms ease;
+  }
+
+  .lightbox__soundwave.active .wave-line-1 {
+    animation: wave-draw 400ms ease forwards, wave-pulse 300ms ease-in-out infinite alternate;
+  }
+  .lightbox__soundwave.active .wave-line-2 {
+    animation: wave-draw 400ms ease 50ms forwards, wave-pulse 300ms ease-in-out 100ms infinite alternate;
+    stroke-width: 1.5;
+    opacity: 0.7;
+  }
+  .lightbox__soundwave.active .wave-line-3 {
+    animation: wave-draw 400ms ease 100ms forwards, wave-pulse 300ms ease-in-out 150ms infinite alternate;
+    stroke-width: 1;
+    opacity: 0.5;
+  }
+
+  /* Equalizer Bars */
+  .lightbox__equalizer {
+    position: absolute;
+    bottom: 80px;
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 36px;
+  }
+
+  .eq-bar {
+    width: 4px;
+    height: 100%;
+    background: #39FF14;
+    border-radius: 2px;
+    box-shadow: 0 0 10px #39FF14;
+    transform: scaleY(0.2);
+    transform-origin: bottom;
+  }
+
+  .lightbox__soundwave.active .eq-bar:nth-child(1) { animation: eq-anim 350ms ease-in-out infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(2) { animation: eq-anim 350ms ease-in-out 60ms infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(3) { animation: eq-anim 350ms ease-in-out 120ms infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(4) { animation: eq-anim 350ms ease-in-out 40ms infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(5) { animation: eq-anim 350ms ease-in-out 180ms infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(6) { animation: eq-anim 350ms ease-in-out 90ms infinite alternate; }
+  .lightbox__soundwave.active .eq-bar:nth-child(7) { animation: eq-anim 350ms ease-in-out 150ms infinite alternate; }
+
+  @keyframes wave-draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes wave-pulse {
+    0% { transform: translateY(-50%) scaleY(0.8); }
+    100% { transform: translateY(-50%) scaleY(1.3); }
+  }
+
+  @keyframes eq-anim {
+    0% { transform: scaleY(0.25); }
+    100% { transform: scaleY(1); }
   }
 
   .lightbox__caption-bar {
@@ -371,6 +501,7 @@ const col3 = allPhotos.slice(6, 9);
   ];
 
   let currentIndex = 0;
+  let isTransitioning = false;
 
   const modal = document.getElementById('lightbox-modal');
   const modalImg = document.getElementById('lightbox-img') as HTMLImageElement;
@@ -383,7 +514,7 @@ const col3 = allPhotos.slice(6, 9);
 
   function openLightbox(index: number) {
     currentIndex = index;
-    updateLightbox();
+    updateLightboxDirect();
     modal?.classList.add('lightbox--active');
     modal?.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -395,7 +526,7 @@ const col3 = allPhotos.slice(6, 9);
     document.body.style.overflow = '';
   }
 
-  function updateLightbox() {
+  function updateLightboxDirect() {
     const photo = photos[currentIndex];
     if (modalImg && photo) {
       modalImg.src = photo.src;
@@ -409,14 +540,50 @@ const col3 = allPhotos.slice(6, 9);
     }
   }
 
+  const soundwaveOverlay = document.getElementById('lightbox-soundwave');
+
+  function changePhotoWithSmokeTransition(newIndex: number) {
+    if (isTransitioning || newIndex === currentIndex || !modalImg) return;
+    isTransitioning = true;
+
+    // Step 1: Trigger Soundwave Waveform Animation & Smoke Out
+    soundwaveOverlay?.classList.add('active');
+    modalImg.classList.add('lightbox__img--smoke-out');
+
+    setTimeout(() => {
+      currentIndex = newIndex;
+      const photo = photos[currentIndex];
+      modalImg.src = photo.src;
+      modalImg.alt = photo.alt;
+
+      if (modalCaption && photo) modalCaption.textContent = photo.alt;
+      if (modalCounter) modalCounter.textContent = `${currentIndex + 1} / ${photos.length}`;
+
+      // Step 2: Switch to Smoke In state
+      modalImg.classList.remove('lightbox__img--smoke-out');
+      modalImg.classList.add('lightbox__img--smoke-in');
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          // Step 3: Dissolve Smoke & Hide Waveform Overlay
+          modalImg.classList.remove('lightbox__img--smoke-in');
+          setTimeout(() => {
+            soundwaveOverlay?.classList.remove('active');
+            isTransitioning = false;
+          }, 350);
+        });
+      });
+    }, 220);
+  }
+
   function showNext() {
-    currentIndex = (currentIndex + 1) % photos.length;
-    updateLightbox();
+    const nextIdx = (currentIndex + 1) % photos.length;
+    changePhotoWithSmokeTransition(nextIdx);
   }
 
   function showPrev() {
-    currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-    updateLightbox();
+    const prevIdx = (currentIndex - 1 + photos.length) % photos.length;
+    changePhotoWithSmokeTransition(prevIdx);
   }
 
   // Event Listeners

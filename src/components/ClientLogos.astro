@@ -4,7 +4,7 @@ export interface BrandLogo {
   name: string;
   src: string;
   alt: string;
-  maxHeight: string;
+  width: string;
 }
 
 const brands: BrandLogo[] = [
@@ -13,35 +13,35 @@ const brands: BrandLogo[] = [
     name: 'PSP audioware',
     src: '/brands/psp-logo-light.svg',
     alt: 'PSP audioware logo',
-    maxHeight: '42px',
+    width: '115px',
   },
   {
     id: 'fabfilter',
     name: 'FabFilter',
     src: '/brands/logo-fabfilter-2022.svg',
     alt: 'FabFilter logo',
-    maxHeight: '44px',
+    width: '36px',
   },
   {
     id: 'audiospot',
     name: 'Audio Spot',
     src: '/brands/audiospotWhite_transs.webp',
     alt: 'Audio Spot logo',
-    maxHeight: '34px',
+    width: '105px',
   },
   {
     id: 'spl',
     name: 'SPL',
     src: '/brands/spl.png',
     alt: 'SPL logo',
-    maxHeight: '38px',
+    width: '54px',
   },
   {
     id: 'toneboosters',
     name: 'ToneBoosters',
     src: '/brands/toneboosters.png',
     alt: 'ToneBoosters logo',
-    maxHeight: '28px',
+    width: '120px',
   },
 ];
 ---
@@ -49,13 +49,13 @@ const brands: BrandLogo[] = [
 <div class="client-logos" aria-label="Logotypy partnerów i oprogramowania">
   <div class="client-logos__track">
     {brands.map((brand) => (
-      <div class="client-logos__item" data-brand={brand.id}>
+      <div class={`client-logos__item client-logos__item--${brand.id}`} data-brand={brand.id}>
         <img
           src={brand.src}
           alt={brand.alt}
           class={`client-logos__img client-logos__img--${brand.id}`}
-          style={`max-height: ${brand.maxHeight};`}
-          loading="lazy"
+          style={`width: ${brand.width};`}
+          loading="eager"
           decoding="async"
         />
       </div>
@@ -75,8 +75,9 @@ const brands: BrandLogo[] = [
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(24px, 4.5vw, 56px);
-    flex-wrap: wrap;
+    gap: clamp(14px, 3vw, 42px);
+    flex-wrap: nowrap; /* All 5 logos strictly in 1 single row */
+    max-width: 100%;
   }
 
   .client-logos__item {
@@ -84,8 +85,9 @@ const brands: BrandLogo[] = [
     align-items: center;
     justify-content: center;
     height: 52px;
-    padding: 4px 8px;
-    transition: transform 300ms ease;
+    padding: 4px 6px;
+    transition: transform 300ms ease, background 300ms ease, border-color 300ms ease;
+    flex-shrink: 0;
   }
 
   .client-logos__item:hover {
@@ -93,42 +95,73 @@ const brands: BrandLogo[] = [
   }
 
   .client-logos__img {
-    width: auto;
     height: auto;
     object-fit: contain;
-    transition: filter 300ms ease, opacity 300ms ease;
+    transition: filter 300ms ease, opacity 300ms ease, transform 300ms ease;
+    display: block;
   }
 
-  /* SVG / White Logo Filters */
-  .client-logos__img--psp,
-  .client-logos__img--fabfilter,
-  .client-logos__img--audiospot {
-    filter: opacity(0.7);
+  /* 1. PSP Audioware (White SVG) */
+  .client-logos__img--psp {
+    width: 115px;
+    filter: opacity(0.75);
   }
-
-  .client-logos__item:hover .client-logos__img--psp,
-  .client-logos__item:hover .client-logos__img--fabfilter,
-  .client-logos__item:hover .client-logos__img--audiospot {
+  .client-logos__item--psp:hover .client-logos__img--psp {
     filter: opacity(1);
   }
 
-  /* PNG Dark Logos Inversion to Crisp White */
-  .client-logos__img--spl,
-  .client-logos__img--toneboosters {
-    filter: brightness(0) invert(1) opacity(0.7);
+  /* 2. FabFilter (SVG) */
+  .client-logos__img--fabfilter {
+    width: 36px;
+    filter: grayscale(100%) brightness(1.2) opacity(0.75);
+    border-radius: 4px;
+  }
+  .client-logos__item--fabfilter:hover .client-logos__img--fabfilter {
+    filter: grayscale(0%) brightness(1) opacity(1);
   }
 
-  .client-logos__item:hover .client-logos__img--spl,
-  .client-logos__item:hover .client-logos__img--toneboosters {
+  /* 3. Audio Spot (White WebP) */
+  .client-logos__img--audiospot {
+    width: 105px;
+    filter: opacity(0.75);
+  }
+  .client-logos__item--audiospot:hover .client-logos__img--audiospot {
+    filter: opacity(1);
+  }
+
+  /* 4. SPL (PNG Inverted Card) */
+  .client-logos__item--spl {
+    height: auto;
+    padding: 0;
+  }
+
+  .client-logos__img--spl {
+    width: 68px;
+    border-radius: 8px;
+    filter: invert(1) contrast(1.15) opacity(0.85);
+  }
+  .client-logos__item--spl:hover .client-logos__img--spl {
+    filter: invert(1) contrast(1.15) opacity(1);
+  }
+
+  /* 5. ToneBoosters (PNG) */
+  .client-logos__img--toneboosters {
+    width: 120px;
+    filter: brightness(0) invert(1) opacity(0.75);
+  }
+  .client-logos__item--toneboosters:hover .client-logos__img--toneboosters {
     filter: brightness(0) invert(1) opacity(1);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .client-logos__track {
-      gap: 20px;
+      gap: 12px;
+      flex-wrap: wrap;
     }
-    .client-logos__item {
-      height: 40px;
-    }
+    .client-logos__img--psp { width: 95px; }
+    .client-logos__img--fabfilter { width: 30px; }
+    .client-logos__img--audiospot { width: 85px; }
+    .client-logos__img--spl { width: 36px; }
+    .client-logos__img--toneboosters { width: 100px; }
   }
 </style>
