@@ -238,7 +238,7 @@ const col3 = allPhotos.slice(6, 9);
 
   .lightbox__content {
     position: relative;
-    z-index: 10;
+    z-index: 15; /* Higher than wave beam (5) so wave is hidden behind photo */
     max-width: 90vw;
     max-height: 85vh;
     display: flex;
@@ -279,7 +279,7 @@ const col3 = allPhotos.slice(6, 9);
     transform: scale(1);
   }
 
-  /* Pure Audio Wave Line Beam (High z-index 50 connecting Left and Right arrows) */
+  /* Audio Impulse Beam Container (z-index 5, lower than photo so it passes behind the photo) */
   .lightbox__soundwave {
     position: fixed;
     top: 50%;
@@ -287,7 +287,7 @@ const col3 = allPhotos.slice(6, 9);
     width: 100vw;
     height: 180px;
     transform: translateY(-50%);
-    z-index: 50; /* Higher than image and caption overlay */
+    z-index: 5; /* Lower than photo (15) so wave is visible only on the sides */
     pointer-events: none;
     background: transparent; /* Absolutely no background shading */
     display: flex;
@@ -337,10 +337,11 @@ const col3 = allPhotos.slice(6, 9);
     opacity: 0.25;
   }
 
-  /* Ultra-sleek 1.5px Equalizer Audio Level Bars */
+  /* Ultra-sleek 1.5px Equalizer Audio Level Bars (Unchanged & Visible) */
   .lightbox__equalizer {
     position: absolute;
     bottom: 24px;
+    z-index: 25; /* Higher than photo and wave overlay */
     display: flex;
     align-items: flex-end;
     gap: 4px;
