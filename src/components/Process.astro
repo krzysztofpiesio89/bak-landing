@@ -5,22 +5,32 @@ const steps = [
   {
     number: 1,
     title: 'Przyjęcie i analiza materiału',
-    body: 'Każdy projekt startuje z chwilą, gdy materiał trafia do mnie, zwykle w postaci surowych ścieżek dźwiękowych z planu filmowego lub z montażu obrazu. To moment, w którym zaczynam pracę nad tym, żeby dźwięk nabrał jakości, spójności i finalnie brzmiał profesjonalnie – tak, aby bez problemu mógł trafić do emisji w kinie, telewizji czy Internecie.',
+    body: 'Każdy projekt startuje z chwilą gdy materiał trafia do mnie, zwykle w postaci surowych ścieżek dźwiękowych z planu filmowego lub z montażu obrazu. To moment, w którym zaczynam pracę nad tym, żeby dźwięk nabrał jakości, spójności i finalnie brzmiał profesjonalnie – tak, aby bez problemu mógł trafić do emisji w kinie, telewizji czy Internecie',
+    image: '15 kolor.png',
   },
   {
     number: 2,
-    title: 'Oczyszczanie i edycja',
-    body: 'Usuwam szumy, przydźwięki, echo i niepożądane dźwięki tła. Stosuję zaawansowane narzędzia do noise reduction i restauracji dźwięku, zachowując naturalność i pełnię brzmienia mowy oraz efektów.',
+    title: 'Czyszczenie i montaż dialogów',
+    body: 'Materiał z planu zdarza się, że nie jest idealny – i to zupełnie normalne. Plan filmowy to żywe środowisko, gdzie nie wszystko można kontrolować. Usuwanie szumów i zakłóceń, redukcja pogłosów, eliminacja ocierek mikrofonów o ubrania, dopasowanie dźwięków z różnych dubli… To techniczne zabiegi, które wykonuję po to, by widz mógł skupić się wyłącznie na historii',
+    image: '16 kolor.png',
   },
   {
     number: 3,
-    title: 'Mix i sound design',
-    body: 'Balansuję poziomy głosu, muzyki i efektów, projektuję głębię oraz atmosferę dźwiękową każdej sceny. Każdy element zostaje osadzony w przestrzeni, by budować emocje i dopełniać obraz.',
+    title: 'Budowanie przestrzeni dźwiękowej',
+    body: 'Dopasowanie atmosfer i tła scen, integracja efektów dźwiękowych, wyrównanie dynamiki między scenami, przygotowanie materiału do finalnego mixu. Jeśli projekt wymaga sound designu lub kreatywnej warstwy dźwiękowej, pojawia się dodatkowy etap pracy koncepcyjnej. To moment, w którym dźwięk przestaje być tylko techniką, a staje się częścią narracji filmu',
+    image: '17 kolor.png',
   },
   {
     number: 4,
-    title: 'Mastering i odbiór',
-    body: 'Finalizuję projekt do rygorystycznych standardów broadcastowych (Loudness LUFS, True Peak). Dostarczam pliki w wymaganym formacie i przeprowadzam poprawki do pełnej satysfakcji twórców.',
+    title: 'Finalny mix',
+    body: 'W zależności od przeznaczenia projektu przygotowuję mix stereo, 5.1 surround lub inne konfiguracje wymagane przez system emisji. Dbam, aby mix był zgodny z obowiązującymi standardami emisyjnymi, tak aby gotowy materiał spełniał wymagania techniczne stawiane przez nadawców',
+    image: '18 kolor.png',
+  },
+  {
+    number: 5,
+    title: 'Materiał gotowy do emisji',
+    body: 'Otrzymujesz ode mnie kompletny zestaw plików – finalny mix, wersje emisyjne zgodne ze standardami, ewentualne STEM’y – dialogi, muzykę, efekty. W tym momencie dźwięk jest już w pełni profesjonalny, spójny i gotowy do publikacji. Każdy projekt jest trochę inny – ale cel pozostaje ten sam: sprawić, by Twoja historia zabrzmiała dokładnie tak, jak powinna',
+    image: '19 kolor.png',
   },
 ];
 ---
@@ -30,23 +40,27 @@ const steps = [
     <!-- Image -->
     <div class="process__image-col" data-animate>
       <div class="process__image-frame">
-        <img
-          src={`${base}14%20kolor.png`}
-          alt="Krzysztof Bąk z mikrofonem na planie"
-          class="process__image"
-          width="540"
-          height="640"
-          loading="lazy"
-          decoding="async"
-        />
+        {steps.map((step, idx) => (
+          <img
+            id={`process-img-${idx + 1}`}
+            src={`${base}${step.image}`}
+            alt={`Krzysztof Bąk — ${step.title}`}
+            class={`process__image ${idx === 0 ? 'process__image--active' : ''}`}
+            data-process-img={idx + 1}
+            width="540"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
+        ))}
       </div>
     </div>
 
     <!-- Process Content -->
     <div class="process__text-col" data-animate>
-      <p class="section-label">Jak pracuję</p>
+      <h2 class="section-label">Jak pracuję</h2>
 
-      <!-- Step Card -->
+      <!-- Step Card (background: #181919) -->
       <div class="process__card" id="process-card">
         <div class="process__card-header">
           <h3 class="process__card-title" id="process-title">{steps[0].title}</h3>
@@ -84,50 +98,64 @@ const steps = [
     align-items: center;
   }
 
-  .section-badge {
+  .section-label {
+    display: flex;
+    align-items: center;
+    font-family: 'Neue Haas Grotesk Text Pro', 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 120%;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin-bottom: var(--space-6);
+    text-transform: none;
+  }
+
+  .section-label::before {
+    content: '';
     display: inline-block;
     width: 10px;
     height: 10px;
     background-color: var(--color-accent);
-    margin-right: 8px;
-    vertical-align: middle;
-  }
-
-  .section-label {
-    display: flex;
-    align-items: center;
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: var(--space-6);
+    margin-right: 12px;
   }
 
   /* Image */
   .process__image-frame {
+    position: relative;
     overflow: hidden;
     border-radius: var(--radius-sm);
+    aspect-ratio: 4/3;
   }
 
   .process__image {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    aspect-ratio: 4/3;
     filter: grayscale(100%);
-    transition: filter var(--transition-slow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 350ms ease, filter var(--transition-slow);
     display: block;
+  }
+
+  .process__image.process__image--active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 
   .process__image-frame:hover .process__image {
     filter: grayscale(0%);
   }
 
-  /* Card */
+  /* Card (background: #181919) */
   .process__card {
-    background-color: #141414;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: var(--space-8);
-    border-radius: 2px;
+    background-color: #181919;
+    border: none;
+    padding: 32px;
+    border-radius: 0;
     margin-bottom: var(--space-6);
     min-height: 240px;
     display: flex;
@@ -144,10 +172,12 @@ const steps = [
   }
 
   .process__card-title {
-    font-size: clamp(1.2rem, 1.8vw, 1.6rem);
-    font-weight: 600;
-    color: var(--color-text);
-    line-height: 1.3;
+    font-family: 'Neue Haas Grotesk Text Pro', 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 120%;
+    letter-spacing: -0.03em;
+    color: #ffffff;
     margin: 0;
   }
 
@@ -158,20 +188,20 @@ const steps = [
     width: 32px;
     height: 32px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: var(--text-sm);
+    font-size: 14px;
     font-weight: 600;
     color: var(--color-text-secondary);
     flex-shrink: 0;
   }
 
   .process__card-body {
-    font-family: 'Inter', var(--font-sans);
+    font-family: 'Neue Haas Grotesk Text Pro', 'Inter', sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 16px;
     line-height: 135%;
     letter-spacing: -0.01em;
-    color: #FDFDFD;
+    color: #e5e5e5;
     margin: 0;
   }
 
@@ -185,9 +215,9 @@ const steps = [
     width: 48px;
     height: 48px;
     border-radius: 0;
-    border: 1px solid rgba(168, 255, 62, 0.3);
+    border: 1px solid rgba(57, 255, 20, 0.3);
     background: transparent;
-    color: rgba(168, 255, 62, 0.4);
+    color: rgba(57, 255, 20, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -199,28 +229,7 @@ const steps = [
   .slider-arrow:hover {
     border-color: var(--color-accent);
     color: var(--color-accent);
-    box-shadow: 0 0 12px rgba(168, 255, 62, 0.2);
-  }
-
-  /* Bottom Quote Banner */
-  .process__quote-container {
-    margin-top: var(--space-20);
-    text-align: center;
-  }
-
-  .process__quote {
-    font-family: 'Neue Haas Grotesk Text Pro', 'Inter', sans-serif;
-    font-size: clamp(2rem, 3.5vw, 48px);
-    font-weight: 500;
-    font-style: normal;
-    line-height: 120%;
-    letter-spacing: -0.03em;
-    color: #FDFDFD;
-  }
-
-  .process__quote .text-accent {
-    font-weight: 700;
-    color: var(--color-accent);
+    box-shadow: 0 0 12px rgba(57, 255, 20, 0.25);
   }
 
   /* Responsive */
@@ -232,49 +241,55 @@ const steps = [
   }
 </style>
 
-<script define:vars={{ steps }}>
+<script define:vars={{ steps, base }}>
   let currentIndex = 0;
 
-  const titleEl = document.getElementById('process-title');
-  const badgeEl = document.getElementById('process-badge');
-  const bodyEl = document.getElementById('process-body');
-  const prevBtn = document.getElementById('process-prev-btn');
-  const nextBtn = document.getElementById('process-next-btn');
+  function initProcessSlider() {
+    const titleEl = document.getElementById('process-title');
+    const badgeEl = document.getElementById('process-badge');
+    const bodyEl = document.getElementById('process-body');
+    const images = document.querySelectorAll('[data-process-img]');
+    const prevBtn = document.getElementById('process-prev-btn');
+    const nextBtn = document.getElementById('process-next-btn');
 
-  function updateStep(index) {
-    currentIndex = index;
-    if (titleEl) titleEl.textContent = steps[currentIndex].title;
-    if (badgeEl) badgeEl.textContent = steps[currentIndex].number;
-    if (bodyEl) bodyEl.textContent = steps[currentIndex].body;
+    if (!images.length) return;
 
-    if (prevBtn) {
-      if (currentIndex === 0) {
-        prevBtn.classList.remove('slider-arrow--active');
-      } else {
-        prevBtn.classList.add('slider-arrow--active');
-      }
+    function updateStep(index) {
+      currentIndex = index;
+      if (titleEl) titleEl.textContent = steps[currentIndex].title;
+      if (badgeEl) badgeEl.textContent = steps[currentIndex].number;
+      if (bodyEl) bodyEl.textContent = steps[currentIndex].body;
+
+      images.forEach((img) => {
+        const imgNum = parseInt(img.getAttribute('data-process-img') || '1', 10);
+        if (imgNum === currentIndex + 1) {
+          img.classList.add('process__image--active');
+          img.style.opacity = '1';
+          img.style.pointerEvents = 'auto';
+        } else {
+          img.classList.remove('process__image--active');
+          img.style.opacity = '0';
+          img.style.pointerEvents = 'none';
+        }
+      });
     }
 
-    if (nextBtn) {
-      if (currentIndex === steps.length - 1) {
-        nextBtn.classList.remove('slider-arrow--active');
-      } else {
-        nextBtn.classList.add('slider-arrow--active');
-      }
-    }
+    prevBtn?.addEventListener('click', () => {
+      let prev = currentIndex - 1;
+      if (prev < 0) prev = steps.length - 1;
+      updateStep(prev);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      let next = currentIndex + 1;
+      if (next >= steps.length) next = 0;
+      updateStep(next);
+    });
   }
 
-  prevBtn?.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      updateStep(currentIndex - 1);
-    }
-  });
-
-  nextBtn?.addEventListener('click', () => {
-    if (currentIndex < steps.length - 1) {
-      updateStep(currentIndex + 1);
-    } else {
-      updateStep(0); // loop back to start
-    }
-  });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProcessSlider);
+  } else {
+    initProcessSlider();
+  }
 </script>

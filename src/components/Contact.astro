@@ -32,9 +32,9 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
 
     <!-- CTA Button -->
     <div class="contact__action" data-animate data-animate-delay="200">
-      <a href="mailto:k.bak@dzwiekwfilmie.pl" class="btn btn-primary contact__cta">
+      <button id="open-contact-modal" type="button" class="btn btn-primary contact__cta">
         Porozmawiajmy o projekcie
-      </a>
+      </button>
     </div>
 
     <!-- Direct Contact Info -->
@@ -69,6 +69,61 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     </div>
   </div>
 </section>
+
+<!-- Contact Form Modal Dialog (Figma Design #formularz kontaktowy) -->
+<div id="contact-modal" class="contact-modal-backdrop" aria-hidden="true">
+  <div class="contact-modal__container" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+    <div class="contact-modal__header">
+      <h3 id="contact-modal-title" class="contact-modal__title">Skontaktuj się</h3>
+      <button id="close-contact-modal" class="contact-modal__close-btn" aria-label="Zamknij formularz">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <form id="contact-form" class="contact-modal__form">
+      <div class="form-group">
+        <label for="form-name" class="form-label">Imię i nazwisko <span class="required">*</span></label>
+        <input type="text" id="form-name" name="name" class="form-input" placeholder="Grzegorz Brzęczyszczykiewicz" required />
+      </div>
+
+      <div class="form-group">
+        <label for="form-email" class="form-label">Adres e-mail <span class="required">*</span></label>
+        <input type="email" id="form-email" name="email" class="form-input" placeholder="Wprowadź adres e-mail" required />
+      </div>
+
+      <div class="form-group">
+        <label for="form-subject" class="form-label">Temat <span class="required">*</span></label>
+        <input type="text" id="form-subject" name="subject" class="form-input" placeholder="Wprowadź temat wiadomości" required />
+      </div>
+
+      <div class="form-group">
+        <label for="form-message" class="form-label">Wiadomość <span class="required">*</span></label>
+        <textarea id="form-message" name="message" class="form-input form-textarea" rows="4" placeholder="Wprowadź wiadomość" required></textarea>
+      </div>
+
+      <div class="form-group form-group--checkbox">
+        <label class="checkbox-container">
+          <input type="checkbox" id="form-consent" name="consent" class="checkbox-native" required />
+          <span class="checkbox-custom">
+            <svg width="12" height="10" viewBox="0 0 12 10" fill="none" stroke="#39FF14" stroke-width="2">
+              <path d="M1 5l3.5 3.5L11 1"/>
+            </svg>
+          </span>
+          <span class="checkbox-text">Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z polityką prywatności <span class="required">*</span></span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-submit">
+        Wyślij wiadomość
+      </button>
+
+      <div id="form-status" class="form-status" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
 
 <style>
   .contact-section {
@@ -304,6 +359,242 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
   .footer__link:hover {
     color: var(--color-accent);
   }
+
+  /* Contact Form Modal Styles (Figma #formularz kontaktowy) */
+  .contact-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .contact-modal-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .contact-modal__container {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    max-width: 620px;
+    background: #000000;
+    padding: 36px 40px;
+    border-radius: 0;
+    border: none;
+    overflow: visible;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.95), 0 0 30px rgba(57, 255, 20, 0.12);
+    transform: scale(0.95);
+    transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .contact-modal-backdrop.is-open .contact-modal__container {
+    transform: scale(1);
+  }
+
+  .contact-modal__container::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    z-index: -1;
+    background: linear-gradient(
+      90deg,
+      #39FF14 0%,
+      rgba(57, 255, 20, 0.2) 25%,
+      #39FF14 50%,
+      rgba(57, 255, 20, 0.2) 75%,
+      #39FF14 100%
+    );
+    background-size: 300% 100%;
+    border-radius: 0;
+    animation: neon-wave 5s linear infinite;
+    opacity: 0.9;
+    filter: blur(1px);
+  }
+
+  .contact-modal__container::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    z-index: -1;
+    background: #000000;
+    border-radius: 0;
+  }
+
+  @keyframes neon-wave {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 300% 0%; }
+  }
+
+  .contact-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .contact-modal__title {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .contact-modal__close-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #39FF14;
+    color: #39FF14;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 0;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .contact-modal__close-btn:hover {
+    background: rgba(57, 255, 20, 0.15);
+    transform: scale(1.05);
+  }
+
+  .contact-modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .required {
+    color: #39FF14;
+  }
+
+  .form-input {
+    width: 100%;
+    background: #080808;
+    border: 1px solid #222222;
+    color: #ffffff;
+    padding: 12px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+    border-radius: 0;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .form-input::placeholder {
+    color: #555555;
+  }
+
+  .form-input:focus {
+    border-color: #39FF14;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.25);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+
+  /* Custom Checkbox */
+  .form-group--checkbox {
+    margin-top: 4px;
+  }
+
+  .checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .checkbox-native {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .checkbox-custom {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #39FF14;
+    background: #080808;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    border-radius: 0;
+    transition: background 0.2s ease;
+  }
+
+  .checkbox-custom svg {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .checkbox-native:checked ~ .checkbox-custom {
+    background: rgba(57, 255, 20, 0.1);
+  }
+
+  .checkbox-native:checked ~ .checkbox-custom svg {
+    opacity: 1;
+  }
+
+  .checkbox-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    line-height: 1.4;
+  }
+
+  .btn-submit {
+    width: 100%;
+    margin-top: 8px;
+    justify-content: center;
+  }
+
+  .form-status {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    text-align: center;
+    min-height: 20px;
+  }
+  .form-status.success { color: #39FF14; }
+  .form-status.error { color: #ff4444; }
 </style>
 
 <script>
@@ -332,9 +623,65 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     observer.observe(video);
   }
 
+  // Contact Form Modal Open/Close Logic
+  function initContactModal() {
+    const modal = document.getElementById('contact-modal');
+    const openBtn = document.getElementById('open-contact-modal');
+    const closeBtn = document.getElementById('close-contact-modal');
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const statusDiv = document.getElementById('form-status');
+
+    if (!modal) return;
+
+    function openModal() {
+      modal?.classList.add('is-open');
+      modal?.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal?.classList.remove('is-open');
+      modal?.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    openBtn?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+
+    // Close modal when clicking backdrop outside container
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+
+    // Handle Form Submit
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (statusDiv) {
+        statusDiv.className = 'form-status success';
+        statusDiv.textContent = 'Dziękujemy! Wiadomość została wysłana.';
+        setTimeout(() => {
+          form.reset();
+          statusDiv.textContent = '';
+          closeModal();
+        }, 2000);
+      }
+    });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLazyContactVideo);
+    document.addEventListener('DOMContentLoaded', () => {
+      initLazyContactVideo();
+      initContactModal();
+    });
   } else {
     initLazyContactVideo();
+    initContactModal();
   }
 </script>

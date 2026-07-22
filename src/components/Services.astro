@@ -1,5 +1,39 @@
 ---
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const servicesTabs = [
+  {
+    text: 'W filmie dokumentalnym autentyczność jest wszystkim, a dźwięk ma w niej ogromny udział. Pracuję przy filmach dokumentalnych, zajmuję się pełnym opracowaniem warstwy dźwiękowej filmu – od pracy z materiałem nagranym na planie po finalny miks. W dokumencie dźwięk ma szczególne zadanie: powinien być wiarygodny, naturalny i prowadzić widza przez historię, nie odciągając uwagi od bohaterów. Oczyszczone dialogi, spójna przestrzeń dźwiękowa i dobrze zbudowane tło sceny sprawiają, że widz łatwiej rozumie kontekst i emocje opowiadanej historii. Dzięki temu film staje się bardziej angażujący i profesjonalny w odbiorze. Dla Ciebie jako twórcy oznacza to materiał, który jest czytelny, spójny i gotowy do emisji na festiwalach, w telewizji czy na platformach streamingowych.',
+    image: '20 kolor.png',
+  },
+  {
+    text: 'Reklama ma tylko kilka sekund, by zatrzymać uwagę widza – a decyzja, czy oglądać dalej, zapada niemal natychmiast. W takich produkcjach dźwięk musi działać szybko, precyzyjnie i wspierać przekaz obrazu od pierwszych chwil. Zajmuję się postprodukcją dźwięku do reklam i filmów promocyjnych, dbając o wokale, dopasowując brzmienie scen oraz integrując muzykę i efekty w spójną całość. Dbam o to, aby każdy element dźwiękowy budował właściwe emocje. Dzięki temu przekaz marki pozostaje czytelny, profesjonalny i łatwiejszy do zapamiętania przez widza.',
+    image: '20 kolor.png',
+  },
+  {
+    text: 'YouTube, Instagram, platformy streamingowe, serwisy VOD, media społecznościowe… To środowisko, w którym widz podejmuje decyzję w ciągu kilku sekund – czy zostaje i ogląda dalej, czy po prostu klika następny materiał. Dlatego jakość dźwięku ma ogromne znaczenie. Profesjonalny dźwięk sprawia, że materiał buduje wiarygodność całej produkcji. To moja specjalność.',
+    image: '20 kolor.png',
+  },
+  {
+    text: 'Dźwięk w przestrzeni działa inaczej niż w filmie – nie tylko towarzyszy obrazowi, ale staje się częścią miejsca. Przygotowuję ścieżki dźwiękowe do instalacji multimedialnych, muzeów i wystaw, prezentacji, ekspozycji immersyjnych oraz mappingów i projekcji przestrzennych. Projektuję brzmienie tak, aby współpracowało z architekturą, ruchem widza i systemem nagłośnienia. W takich realizacjach kluczowe jest precyzyjne dopasowanie dźwięku do konkretnej przestrzeni – często w systemach wielokanałowych. Dzięki temu dźwięk nie jest tylko dodatkiem, lecz elementem, który buduje doświadczenie całej instalacji.',
+    image: '20 kolor.png',
+  },
+  {
+    text: 'Dźwięk Twojego filmu musi działać wszędzie – na głośniku telefonu, w małych słuchawkach, na laptopie, ale także w kinie i na wysokiej klasy systemach audio. Widzowie oglądają dziś treści w bardzo różnych warunkach, a decyzja o tym, jak film zabrzmi w każdym z nich, zapada właśnie na etapie mixu i masteringu. To ja decyduję o proporcjach dialogów, muzyki i efektów, kontroluję dynamikę i dbam o brzmienie. Na tym etapie tłumaczę dźwięk na różne systemy odsłuchowe, dbając o to, aby historia pozostała czytelna i angażująca niezależnie od miejsca odtwarzania. Taki jest cel tej pracy – Twój film musi działać równie dobrze na każdym urządzeniu.',
+    image: '20 kolor.png',
+  },
+];
+
+const mix51Tabs = [
+  {
+    text: 'W pracy nad filmem traktuję mix 5.1 jako punkt wyjścia do budowania konstrukcji dźwięku. System ten opiera się na sześciu kanałach – lewym, prawym, centralnym, dwóch kanałach tylnych oraz kanale niskich częstotliwości – co daje znacznie większą kontrolę nad rozmieszczeniem dialogów, muzyki i efektów niż w tradycyjnym stereo. Dzięki temu mogę precyzyjnie kształtować przestrzeń i relacje między poszczególnymi elementami dźwięku. Pracując w formacie 5.1 przygotowuję jednocześnie solidną podstawę do stworzenia innych wersji mixu, dostosowanych do różnych sposobów dystrybucji i odsłuchu.',
+    image: '5.1.webp'
+  },
+  {
+    text: 'Tworzenie dźwięku przestrzennego ma również wymiar praktyczny i produkcyjny. Filmy prezentowane na festiwalach, w kinach czy na profesjonalnych pokazach bardzo często wymagają miksu w formacie 5.1, który jest standardem projekcji. To także podejście typowe dla produkcji realizowanych w sposób w pełni profesjonalny – nawet jeśli finalnie film będzie oglądany na różnych urządzeniach. Dzięki pracy w przestrzeni możliwe jest dokładniejsze budowanie sceny dźwiękowej, większa kontrola nad detalem oraz przygotowanie materiału, który spełnia standardy dystrybucji festiwalowej, kinowej i telewizyjnej.',
+    image: '5.1.webp'
+  }
+];
 ---
 
 <!-- Section 1: Co robię -->
@@ -7,41 +41,45 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
   <div class="container services__inner">
     <!-- Left text block -->
     <div class="services__text-col" data-animate>
-      <p class="section-label">Co robię</p>
+      <h2 class="section-label">Co robię</h2>
       
       <div class="services__card">
-        <p class="services__card-text">
-          W filmie dokumentalnym autentyczność jest wszystkim, a dźwięk ma w niej ogromny udział. Pracuję przy filmach dokumentalnych, zajmuję się pełnym opracowaniem warstwy dźwiękowej filmu – od pracy z materiałem nagranym na planie po finalny miks. W dokumencie dźwięk ma szczególne zadanie: powinien być wiarygodny, naturalny i prowadzić widza przez historię, nie odciągając uwagi od bohaterów. Oczyszczone dialogi, spójna przestrzeń dźwiękowa i dobrze zbudowane tło sceny sprawiają, że widz łatwiej rozumie kontekst i emocje opowiadanej historii. Dzięki temu film staje się bardziej angażujący i profesjonalny w odbiorze. Dla Ciebie jako twórcy oznacza to materiał, który jest czytelny, spójny i gotowy do emisji na festiwalach, w telewizji czy na platformach streamingowych.
+        <p class="services__card-text" id="services-card-text">
+          {servicesTabs[0].text}
         </p>
       </div>
 
       <!-- Navigation Arrows -->
       <div class="services__slider-arrows">
-        <a href="#jak-pracuje" class="slider-arrow" aria-label="Poprzednia sekcja">
+        <button type="button" class="slider-arrow" id="services-prev-btn" aria-label="Poprzednia zakładka">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
-        </a>
-        <a href="#mix-51" class="slider-arrow slider-arrow--active" aria-label="Przejdź do Mix 5.1">
+        </button>
+        <button type="button" class="slider-arrow slider-arrow--active" id="services-next-btn" aria-label="Następna zakładka">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
-        </a>
+        </button>
       </div>
     </div>
 
     <!-- Right Image -->
     <div class="services__image-col" data-animate data-animate-delay="100">
       <div class="services__image-frame">
-        <img
-          src={`${base}20%20kolor.png`}
-          alt="Profesjonalny sprzęt audio Krzysztofa Bąka"
-          class="services__image"
-          width="540"
-          height="640"
-          loading="lazy"
-          decoding="async"
-        />
+        {servicesTabs.map((tab, idx) => (
+          <img
+            id={`services-img-${idx + 1}`}
+            src={`${base}${tab.image}`}
+            alt="Profesjonalny sprzęt audio Krzysztofa Bąka"
+            class={`services__image ${idx === 0 ? 'services__image--active' : ''}`}
+            data-services-img={idx + 1}
+            width="540"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
+        ))}
       </div>
     </div>
   </div>
@@ -53,40 +91,44 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     <!-- Left Image -->
     <div class="services__image-col" data-animate>
       <div class="services__image-frame">
-        <img
-          src={`${base}5.1.webp`}
-          alt="Słuchawki studyjne i stanowisko praca Mix 5.1"
-          class="services__image"
-          width="540"
-          height="640"
-          loading="lazy"
-          decoding="async"
-        />
+        {mix51Tabs.map((tab, idx) => (
+          <img
+            id={`mix51-img-${idx + 1}`}
+            src={`${base}${tab.image}`}
+            alt="Słuchawki studyjne i stanowisko praca Mix 5.1"
+            class={`services__image ${idx === 0 ? 'services__image--active' : ''}`}
+            data-mix51-img={idx + 1}
+            width="540"
+            height="640"
+            loading="lazy"
+            decoding="async"
+          />
+        ))}
       </div>
     </div>
 
     <!-- Right text block -->
     <div class="services__text-col" data-animate data-animate-delay="100">
-      <p class="section-label">Mix 5.1</p>
+      <h2 class="section-label">Mix 5.1</h2>
 
       <div class="services__card">
-        <p class="services__card-text">
-          W pracy nad filmem traktuję mix 5.1 jako punkt wyjścia do budowania konstrukcji dźwięku. System ten opiera się na sześciu kanałach – lewym, prawym, centralnym, dwóch kanałach tylnych oraz kanale niskich częstotliwości – co daje znacznie większą kontrolę nad rozmieszczeniem dialogów, muzyki i efektów niż w tradycyjnym stereo. Dzięki temu mogę precyzyjnie kształtować przestrzeń i relacje między poszczególnymi elementami dźwięku. Pracując w formacie 5.1 przygotowuję jednocześnie solidną podstawę do stworzenia innych wersji mixu, dostosowanych do różnych sposobów dystrybucji i odsłuchu.
+        <p class="services__card-text" id="mix51-card-text">
+          {mix51Tabs[0].text}
         </p>
       </div>
 
       <!-- Navigation Arrows -->
       <div class="services__slider-arrows">
-        <a href="#co-robie" class="slider-arrow" aria-label="Poprzednia sekcja">
+        <button type="button" class="slider-arrow" id="mix51-prev-btn" aria-label="Poprzednia zakładka Mix 5.1">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
-        </a>
-        <a href="#przed-po" class="slider-arrow slider-arrow--active" aria-label="Przejdź do Przed i po">
+        </button>
+        <button type="button" class="slider-arrow slider-arrow--active" id="mix51-next-btn" aria-label="Następna zakładka Mix 5.1">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -108,49 +150,76 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     grid-template-columns: 0.9fr 1.1fr;
   }
 
+  /* Section Header "Co robię" & "Mix 5.1" */
   .section-label {
     display: flex;
     align-items: center;
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-text);
+    font-family: 'Neue Haas Grotesk Text Pro', 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 120%;
+    letter-spacing: -0.03em;
+    color: #ffffff;
     margin-bottom: var(--space-6);
+    text-transform: none;
   }
 
-  /* Card */
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-accent);
+    margin-right: 12px;
+  }
+
+  /* Card (background: #181919) */
   .services__card {
-    background-color: #141414;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: var(--space-8);
-    border-radius: 2px;
+    background-color: #181919;
+    border: none;
+    padding: 32px;
+    border-radius: 0;
     margin-bottom: var(--space-6);
+    min-height: 240px;
+    display: flex;
+    align-items: center;
   }
 
   .services__card-text {
-    font-family: 'Inter', var(--font-sans);
+    font-family: 'Neue Haas Grotesk Text Pro', 'Inter', sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 16px;
     line-height: 135%;
     letter-spacing: -0.01em;
-    color: #FDFDFD;
+    color: #e5e5e5;
     margin: 0;
   }
 
   /* Image */
   .services__image-frame {
+    position: relative;
     overflow: hidden;
     border-radius: var(--radius-sm);
+    aspect-ratio: 4/3;
   }
 
   .services__image {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    aspect-ratio: 4/3;
     filter: grayscale(100%);
-    transition: filter var(--transition-slow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 350ms ease, filter var(--transition-slow);
     display: block;
+  }
+
+  .services__image.services__image--active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 
   .services__image-frame:hover .services__image {
@@ -167,9 +236,9 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     width: 48px;
     height: 48px;
     border-radius: 0;
-    border: 1px solid rgba(168, 255, 62, 0.3);
+    border: 1px solid rgba(57, 255, 20, 0.3);
     background: transparent;
-    color: rgba(168, 255, 62, 0.4);
+    color: rgba(57, 255, 20, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -182,7 +251,7 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
   .slider-arrow:hover {
     border-color: var(--color-accent);
     color: var(--color-accent);
-    box-shadow: 0 0 12px rgba(168, 255, 62, 0.2);
+    box-shadow: 0 0 12px rgba(57, 255, 20, 0.25);
   }
 
   /* Responsive */
@@ -197,3 +266,95 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     }
   }
 </style>
+
+<script define:vars={{ servicesTabs, mix51Tabs, base }}>
+  function initServicesSliders() {
+    // Section 1: Co robię tabs
+    let currentServiceIndex = 0;
+    const cardTextEl = document.getElementById('services-card-text');
+    const serviceImages = document.querySelectorAll('[data-services-img]');
+    const prevBtn = document.getElementById('services-prev-btn');
+    const nextBtn = document.getElementById('services-next-btn');
+
+    function updateServiceTab(index) {
+      currentServiceIndex = index;
+      if (cardTextEl) cardTextEl.textContent = servicesTabs[currentServiceIndex].text;
+
+      serviceImages.forEach((img) => {
+        const imgNum = parseInt(img.getAttribute('data-services-img') || '1', 10);
+        if (imgNum === currentServiceIndex + 1) {
+          img.classList.add('services__image--active');
+          img.style.opacity = '1';
+          img.style.pointerEvents = 'auto';
+        } else {
+          img.classList.remove('services__image--active');
+          img.style.opacity = '0';
+          img.style.pointerEvents = 'none';
+        }
+      });
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      if (currentServiceIndex > 0) {
+        updateServiceTab(currentServiceIndex - 1);
+      } else {
+        updateServiceTab(servicesTabs.length - 1);
+      }
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      if (currentServiceIndex < servicesTabs.length - 1) {
+        updateServiceTab(currentServiceIndex + 1);
+      } else {
+        updateServiceTab(0);
+      }
+    });
+
+    // Section 2: Mix 5.1 tabs
+    let currentMix51Index = 0;
+    const mix51TextEl = document.getElementById('mix51-card-text');
+    const mix51Images = document.querySelectorAll('[data-mix51-img]');
+    const mix51PrevBtn = document.getElementById('mix51-prev-btn');
+    const mix51NextBtn = document.getElementById('mix51-next-btn');
+
+    function updateMix51Tab(index) {
+      currentMix51Index = index;
+      if (mix51TextEl) mix51TextEl.textContent = mix51Tabs[currentMix51Index].text;
+
+      mix51Images.forEach((img) => {
+        const imgNum = parseInt(img.getAttribute('data-mix51-img') || '1', 10);
+        if (imgNum === currentMix51Index + 1) {
+          img.classList.add('services__image--active');
+          img.style.opacity = '1';
+          img.style.pointerEvents = 'auto';
+        } else {
+          img.classList.remove('services__image--active');
+          img.style.opacity = '0';
+          img.style.pointerEvents = 'none';
+        }
+      });
+    }
+
+    mix51PrevBtn?.addEventListener('click', () => {
+      if (currentMix51Index > 0) {
+        updateMix51Tab(currentMix51Index - 1);
+      } else {
+        updateMix51Tab(mix51Tabs.length - 1);
+      }
+    });
+
+    mix51NextBtn?.addEventListener('click', () => {
+      if (currentMix51Index < mix51Tabs.length - 1) {
+        updateMix51Tab(currentMix51Index + 1);
+      } else {
+        updateMix51Tab(0);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initServicesSliders);
+  } else {
+    initServicesSliders();
+  }
+</script>

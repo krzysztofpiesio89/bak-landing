@@ -6,30 +6,50 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
   <div class="container about__inner">
     <!-- Text side -->
     <div class="about__text-col">
-      <p class="section-label" data-animate>Kim jestem</p>
+      <h2 class="section-label" data-animate>Kim jestem</h2>
 
-      <h2 class="about__heading" data-animate data-animate-delay="100">
-        Jestem realizatorem dźwięku, który sprawia, że dźwięk pracuje dla Ciebie i staje się przewodnikiem; prowadzi widza przez kolejne momenty filmu
-      </h2>
+      <!-- Slide 1 -->
+      <div class="about__slide about__slide--active" data-about-slide="1">
+        <h2 class="about__heading">
+          Jestem realizatorem dźwięku, który sprawia, że dźwięk pracuje dla Ciebie i staje się przewodnikiem; prowadzi widza przez kolejne momenty filmu
+        </h2>
+        <div class="about__body">
+          <p>
+            <span class="text-accent">Nazywam się Krzysztof Bąk.</span> Jestem absolwentem Wydziału Radia i Telewizji Uniwersytetu Śląskiego w Katowicach. Dźwięk towarzyszy mi przez całe moje życie zawodowe – od pierwszych lat pracy w Polskim Radiu aż po dzisiejsze projekty realizowane dla telewizji, kina, Internetu i przestrzeni multimedialnych.
+          </p>
+        </div>
+      </div>
 
-      <div class="about__body" data-animate data-animate-delay="200">
-        <p>
-          <span class="text-accent">Nazywam się Krzysztof Bąk.</span> Jestem absolwentem Wydziału Radia i Telewizji Uniwersytetu Śląskiego w Katowicach. Dźwięk towarzyszy mi przez całe moje życie zawodowe – od pierwszych lat pracy w Polskim Radiu aż po dzisiejsze projekty realizowane dla telewizji, kina, Internetu i przestrzeni multimedialnych.
-        </p>
+      <!-- Slide 2 -->
+      <div class="about__slide" data-about-slide="2" style="display: none;">
+        <div class="about__body about__body--standalone">
+          <p>
+            Pracuję zarówno przy rejestracji dźwięku na planach filmowych, jak i przy montażu oraz postprodukcji ścieżki dźwiękowej. Te dwa obszary zawsze naturalnie się uzupełniają. Dzięki temu patrzę na dźwięk w filmie jak na jeden spójny proces – od momentu jego nagrania na planie aż po finalny mix i emisję.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="about__slide" data-about-slide="3" style="display: none;">
+        <div class="about__body about__body--standalone">
+          <p>
+            Marka <span class="text-accent">postprodukcjadzwieku.pl</span> jest ściśle powiązana z projektem <span class="text-accent">dzwiekwfilmie.pl</span>, który rozwijam od 2012 roku. To miejsce, w którym producenci i twórcy mogą znaleźć profesjonalną usługę <span class="text-accent">rejestracji dźwięku na planie filmowym</span> – doświadczonego dźwiękowca oraz zaplecze sprzętowe potrzebne do realizacji nagrań na najwyższym poziomie. Oba projekty wzajemnie się uzupełniają: jeden skupia się na realizacji i rejestracji dźwięku na planie filmowym, drugi – na postprodukcji.
+          </p>
+        </div>
       </div>
 
       <!-- Slider arrows -->
       <div class="about__slider-arrows" data-animate data-animate-delay="300">
-        <a href="#hero" class="slider-arrow slider-arrow--prev" aria-label="Poprzedni">
+        <button id="about-prev-btn" type="button" class="slider-arrow" aria-label="Poprzedni slajd">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
-        </a>
-        <a href="#jak-pracuje" class="slider-arrow slider-arrow--next slider-arrow--active" aria-label="Przejdź do Jak pracuję">
+        </button>
+        <button id="about-next-btn" type="button" class="slider-arrow slider-arrow--active" aria-label="Następny slajd">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
-        </a>
+        </button>
       </div>
     </div>
 
@@ -37,9 +57,33 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     <div class="about__image-col" data-animate>
       <div class="about__image-frame">
         <img
+          id="about-img-1"
           src={`${base}12%20kolor.png`}
           alt="Krzysztof Bąk — realizator dźwięku na planie"
+          class="about__image about__image--active"
+          data-about-img="1"
+          width="540"
+          height="640"
+          loading="lazy"
+          decoding="async"
+        />
+        <img
+          id="about-img-2"
+          src={`${base}13%20kolor.png`}
+          alt="Krzysztof Bąk — praca przy mikrofonie na planie"
           class="about__image"
+          data-about-img="2"
+          width="540"
+          height="640"
+          loading="lazy"
+          decoding="async"
+        />
+        <img
+          id="about-img-3"
+          src={`${base}14%20kolor.png`}
+          alt="Krzysztof Bąk — postprodukcja i realizacja nagrań"
+          class="about__image"
+          data-about-img="3"
           width="540"
           height="640"
           loading="lazy"
@@ -62,24 +106,40 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     align-items: center;
   }
 
-  .section-badge {
+  .section-label {
+    display: flex;
+    align-items: center;
+    font-family: 'Neue Haas Grotesk Text Pro', 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 120%;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin-bottom: var(--space-6);
+    text-transform: none;
+  }
+
+  .section-label::before {
+    content: '';
     display: inline-block;
     width: 10px;
     height: 10px;
     background-color: var(--color-accent);
-    margin-right: 8px;
-    vertical-align: middle;
+    margin-right: 12px;
   }
 
-  .section-label {
-    display: flex;
-    align-items: center;
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: var(--space-6);
-    text-transform: none;
-    letter-spacing: 0;
+  /* Slides */
+  .about__slide {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 300ms ease, transform 300ms ease;
+  }
+
+  .about__slide.about__slide--active {
+    display: block !important;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* Image column */
@@ -87,16 +147,25 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     position: relative;
     overflow: hidden;
     border-radius: var(--radius-sm);
+    aspect-ratio: 4/3;
   }
 
   .about__image {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    aspect-ratio: 4/3;
     filter: grayscale(100%);
-    transition: filter var(--transition-slow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 350ms ease, filter var(--transition-slow);
     display: block;
+  }
+
+  .about__image.about__image--active {
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 
   .about__image-frame:hover .about__image {
@@ -116,38 +185,52 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
   }
 
   .about__body p {
-    font-size: var(--text-sm);
-    line-height: 1.7;
-    color: var(--color-text-secondary);
+    font-family: 'Inter', var(--font-sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 135%;
+    letter-spacing: -0.01em;
+    color: #e5e5e5;
     margin-bottom: var(--space-8);
+  }
+
+  .about__body--standalone p {
+    font-size: 16px;
+    line-height: 135%;
+    margin-top: 12px;
+  }
+
+  .text-accent {
+    color: var(--color-accent);
+    font-weight: 600;
   }
 
   /* Slider arrows */
   .about__slider-arrows {
     display: flex;
     gap: 12px;
+    margin-top: 16px;
   }
 
   .slider-arrow {
     width: 48px;
     height: 48px;
     border-radius: 0;
-    border: 1px solid rgba(168, 255, 62, 0.3);
+    border: 1px solid rgba(57, 255, 20, 0.3);
     background: transparent;
-    color: rgba(168, 255, 62, 0.4);
+    color: rgba(57, 255, 20, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all var(--transition-fast);
-    text-decoration: none;
   }
 
   .slider-arrow--active,
   .slider-arrow:hover {
     border-color: var(--color-accent);
     color: var(--color-accent);
-    box-shadow: 0 0 12px rgba(168, 255, 62, 0.2);
+    box-shadow: 0 0 12px rgba(57, 255, 20, 0.25);
   }
 
   /* Responsive */
@@ -161,3 +244,66 @@ const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL :
     }
   }
 </style>
+
+<script>
+  function initAboutTabs() {
+    let currentTab = 1;
+    const totalTabs = 3;
+
+    const slides = document.querySelectorAll<HTMLElement>('[data-about-slide]');
+    const images = document.querySelectorAll<HTMLElement>('[data-about-img]');
+    const prevBtn = document.getElementById('about-prev-btn');
+    const nextBtn = document.getElementById('about-next-btn');
+
+    if (!slides.length || !images.length) return;
+
+    function switchTab(newTab: number) {
+      currentTab = newTab;
+
+      slides.forEach((slide) => {
+        const slideNum = parseInt(slide.getAttribute('data-about-slide') || '1', 10);
+        if (slideNum === currentTab) {
+          slide.style.display = 'block';
+          slide.classList.add('about__slide--active');
+        } else {
+          slide.style.display = 'none';
+          slide.classList.remove('about__slide--active');
+        }
+      });
+
+      images.forEach((img) => {
+        const imgNum = parseInt(img.getAttribute('data-about-img') || '1', 10);
+        if (imgNum === currentTab) {
+          img.style.opacity = '1';
+          img.style.pointerEvents = 'auto';
+          img.classList.add('about__image--active');
+        } else {
+          img.style.opacity = '0';
+          img.style.pointerEvents = 'none';
+          img.classList.remove('about__image--active');
+        }
+      });
+    }
+
+    // Initialize initial state
+    switchTab(1);
+
+    prevBtn?.addEventListener('click', () => {
+      let prev = currentTab - 1;
+      if (prev < 1) prev = totalTabs;
+      switchTab(prev);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      let next = currentTab + 1;
+      if (next > totalTabs) next = 1;
+      switchTab(next);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAboutTabs);
+  } else {
+    initAboutTabs();
+  }
+</script>
